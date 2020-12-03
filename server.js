@@ -1,15 +1,17 @@
-const handler = require('serve-handler');
-const http = require('http');
+const express = require('express');
+const path = require('path');
+const history = require('connect-history-api-fallback');
 
+const app = express();
 
+app.use(logger('dev'));
 
-const server = http.createServer((request, response) => {
-    // You pass two more arguments for config and middleware
-    // More details here: https://github.com/vercel/serve-handler#options
-    return handler(request, response);
+app.get('/api', (req, res) => res.send('Hello World!'));
+app.use(history({
+  verbose: true
+}));
+app.use('/', express.static(path.join(__dirname, 'dist')));
 
-})
-
-server.listen(3000, () => {
-    console.log('Running at http://localhost:3000');
-});
+var port = process.env.PORT || 8080;
+app.listen(port);
+console.log('server started '+ port);
