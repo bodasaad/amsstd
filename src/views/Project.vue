@@ -223,8 +223,6 @@
 <script>
 // import Project from "@/components/Projects/project-components/ProjectComponent.vue";
 
-window.$ = require("jquery");
-window.JQuery = require("jquery");
 import { mapGetters, mapState } from "vuex";
 
 export default {

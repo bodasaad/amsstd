@@ -7,7 +7,7 @@
     </a>
     <p id="showLikes" @click="getLikes(this)">{{ likesLength }}</p>
     <div id="allLikes" ref="allLikess">
-      <img id="loading" v-if="loading" class="loading" src="@/assets/loading2.gif" />
+      <img id="loading" v-if="loading" class="loading" src="@/assets/loading2.gif">
       <p id="closeLikes" @click="closeLikes()">
         <i class="fas fa-sort-up"></i>
       </p>
@@ -17,7 +17,7 @@
       >{{message}}</p>
       <div v-if="!loading">
         <div id="single-like" v-for="like in likes" :key="like.userId">
-          <img :src="'http://localhost:3000/'+ like.userPicture" alt srcset />
+          <img :src="'http://localhost:3000/'+ like.userPicture" alt srcset>
           <h4>{{like.username}}</h4>
           <p v-if="like.userId === authUserId" class="liked">Unlike</p>
         </div>
@@ -27,9 +27,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-let $ = require("jquery");
-
+import { mapGetters, mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
@@ -52,10 +50,11 @@ export default {
       const res = await this.$store.dispatch("addlike", postId);
       if (res === 200) {
         this.likesLength += 1;
-
+        console.log(res);
       }
     },
     async getLikes() {
+      
       this.isLoading = true;
       const likesDiv = this.$refs.allLikess;
       $(likesDiv).css({

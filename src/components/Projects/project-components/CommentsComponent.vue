@@ -50,9 +50,8 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from "vuex";
-let $ = require("jquery");
-
+import { mapGetters, mapActions, mapState } from "vuex";
+import { error } from "util";
 export default {
   data() {
     return {
@@ -69,7 +68,7 @@ export default {
   },
   watch: {},
   methods: {
-    showComments() {
+    showComments(e) {
       const commentsDiv = this.$refs.allCommentss;
       commentsDiv.style.display = "block";
       this.comments = this.getcomments(this.postId);
@@ -89,6 +88,8 @@ export default {
       this.comments = null;
     },
     async addComment() {
+      console.log("as");
+
       this.loading = true;
       await this.$store.dispatch({
         type: "feed/addcomment",

@@ -84,7 +84,7 @@
       </a>
     </div>
     <div class="logo">
-      <img :src="this.url + '/images' + '/word.png'" alt="logo" />
+      <img src="@/assets/images/word.png" alt="logo" />
     </div>
     <Footer></Footer>
     <AuthPortal :visibilePortal="visibilePortal"></AuthPortal>
@@ -111,10 +111,11 @@ export default {
     AuthPortal: AuthPortal
   },
   computed: {
-    ...mapState(["two", "one", "url"])
+    ...mapState(["two", "one"]),
   },
-  mounted() {
-    this.$emit("created", { col: "studio" });
+  mounted(){
+    this.$emit("created",{col:'studio'});
+    
   },
   methods: {
     openmail() {
@@ -137,6 +138,7 @@ export default {
         one: { right: 95, left: 5 },
         two: { right: 90, left: 10 }
       });
+      
     }
   }
 };

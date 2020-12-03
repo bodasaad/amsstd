@@ -1,59 +1,21 @@
-// const express = require('express');
-// const path = require('path');
-// const history = require('connect-history-api-fallback');
+var express = require('express');
+var history = require('connect-history-api-fallback');
+var app = express();
 
-// const app = express();
+// Middleware for serving '/dist' directory
+const staticFileMiddleware = express.static('dist');
 
-// app.use(logger('dev'));
+// 1st call for unredirected requests 
+app.use(staticFileMiddleware);
 
-// app.use('/', express.static(path.join(__dirname, 'dist')));
-server.use('/dist', express.static(path.join(__dirname, './dist')));
+// Support history api 
+app.use(history({
+  index: '/dist/index.html'
+}));
 
-// var port = process.env.PORT || 8080;
-// app.listen(port);
-// console.log('server started '+ port);
+// 2nd call for redirected requests
+app.use(staticFileMiddleware);
 
-//server.js
-const express = require('express');
-const server = express();
-const fs = require('fs');
-const path = require('path');
-//obtain bundle
-const bundle =  require('./dist/server.bundle.js');
-//get renderer from vue server renderer
-const renderer = require('vue-server-renderer').createRenderer({
-  //set template
-  template: fs.readFileSync('./index.html', 'utf-8')
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
 });
-
-
-//start server
-server.get('*', (req, res) => { 
-    
-  bundle.default({ url: req.url }).then((app) => {    
-    //context to use as data source
-    //in the template for interpolation
-    const context = {
-      title: 'Vue JS - Server Render',
-      meta: `
-        <meta description="vuejs server side render">
-      `
-    };
-
-    renderer.renderToString(app, context, function (err, html) {   
-      if (err) {
-        if (err.code === 404) {
-          res.status(404).end('Page not found')
-        } else {
-          res.status(500).end('Internal Server Error')
-        }
-      } else {
-        res.end(html)
-      }
-    });        
-  }, (err) => {
-    console.log(err);
-  });  
-});  
-
-server.listen(8080);

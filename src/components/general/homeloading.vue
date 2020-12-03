@@ -5,23 +5,18 @@
       <div data-rail="two" class="rail loading-rails" style="left: 66.6%;"></div>
     </div>
     <div class="logo">
-      <img :src="this.url + '/images' + '/word.png'" alt="logo" />
+      <img src="/img/word.7c99b425.png" alt="logo" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 let $ = require("jquery");
 
 export default {
   name: "homeloading",
   data() {
     return {};
-  },
-  computed: {
-    ...mapState(["two", "one", "url"])
   },
   mounted() {
     setTimeout(() => {

@@ -17,6 +17,7 @@ const filterArticle = (state) => (category) => {
 }
 
 const filterProject = (state) => (category) => {
+    
     if (category === 'all') {
         state.filtredProjects = state.projects
         return state.projects

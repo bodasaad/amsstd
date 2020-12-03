@@ -75,9 +75,9 @@
 <script>
 import Project from "@/components/Projects/project-components/ProjectComponent";
 import * as helpers from "@/helpers/home";
-let $ = require("jquery");
 
 import { mapState, mapGetters } from "vuex";
+let $ = require("jquery");
 
 export default {
   name: "Projetcs",
