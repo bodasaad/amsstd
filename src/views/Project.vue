@@ -202,7 +202,7 @@
               <div class="block-text__image">
                 <img
                   class="blur show"
-                  :src="'https://server.ams-server.xyz' +  c.image"
+                  :src="'https://ams-server.xyz' +  c.image"
                   alt
                   data-gallery-image="https://www.carr.net.au/wp-2020/wp-content/uploads/2020/09/carr_nortonroseVIC-248-LR.jpg"
                   data-gallery-caption

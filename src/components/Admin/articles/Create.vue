@@ -175,7 +175,7 @@ export default {
       form.append("image", this.selectedFile);
       form.append("name", this.selectedFile.name);
       //upload image to server
-      const res = await fetch("https://server.ams-server.xyz/admin/media", {
+      const res = await fetch("https://ams-server.xyz/admin/media", {
         method: "Post",
         body: form
       });
@@ -187,7 +187,7 @@ export default {
         this.$refs.myQuillEditor.quill.insertEmbed(
           range.index,
           "image",
-          `https://server.ams-server.xyz${json}`
+          `https://ams-server.xyz${json}`
         );
       }
     },
