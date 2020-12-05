@@ -86,11 +86,11 @@ export default {
       if (type && category) {
         if (type === "article") {
           this.$refs.articles.activefilters = true;
-          document.querySelector(`a[data-article-id="${category}"]`).click()
+          document.querySelector(`a[data-article-id="${category}"]`).click();
           this.$refs.projects.expand();
-        }else{
-                  this.$refs.projects.activefilters = true;
-          document.querySelector(`a[data-project-id="${category}"]`).click()
+        } else {
+          this.$refs.projects.activefilters = true;
+          document.querySelector(`a[data-project-id="${category}"]`).click();
           this.$refs.projects.expand();
         }
       }
