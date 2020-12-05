@@ -10,10 +10,10 @@
     <div class="columns-footer" v-if="!enter">
       <div class="columns-footer__menu">
         <div class="columns-footer__menu-item" @click="activeColumn('one', $event)">
-          <div class="button-pill active" data-column="one">Articles</div>
+          <div class="button-pill" data-column="one">Articles</div>
         </div>
         <div class="columns-footer__menu-item" @click="activeColumn('two', $event)">
-          <div class="button-pill" data-column="two">Projects</div>
+          <div class="button-pill active" data-column="two">Projects</div>
         </div>
         <div class="columns-footer__menu-item" @click="activeColumn('three', $event)">
           <div class="button-pill" data-column="three">Studio</div>
@@ -86,11 +86,11 @@ export default {
       if (type && category) {
         if (type === "article") {
           this.$refs.articles.activefilters = true;
-          document.querySelector(`a[data-article-id="${category}"]`).click()
+          document.querySelector(`a[data-article-id="${category}"]`).click();
           this.$refs.projects.expand();
-        }else{
-                  this.$refs.projects.activefilters = true;
-          document.querySelector(`a[data-project-id="${category}"]`).click()
+        } else {
+          this.$refs.projects.activefilters = true;
+          document.querySelector(`a[data-project-id="${category}"]`).click();
           this.$refs.projects.expand();
         }
       }

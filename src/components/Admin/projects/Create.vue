@@ -89,7 +89,7 @@
               <i class="fas fa-times close" @click="removeContent(content.length + 1)"></i>
               <div class="p-relative">
                 <i class="fas fa-times close font-s" @click="deleteImage(c.image)"></i>
-                <img :src="'https://server.ams-server.xyz' + c.image" alt class="w-50 block m-auto" />
+                <img :src="'https://ams-server.xyz' + c.image" alt class="w-50 block m-auto" />
               </div>
               <p class>{{c.text}}</p>
             </div>
@@ -213,7 +213,7 @@ export default {
         form.append("image", file);
 
         //upload image to server
-        const res = await fetch("https://server.ams-server.xyz/admin/media", {
+        const res = await fetch("https://ams-server.xyz/admin/media", {
           method: "Post",
           body: form
         });
@@ -222,7 +222,7 @@ export default {
       }
     },
     async deleteImage(name) {
-       await fetch("https://server.ams-server.xyz/admin/media", {
+       await fetch("https://ams-server.xyz/admin/media", {
         method: "Put",
         headers: {
           Accept: "application/json",

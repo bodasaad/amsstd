@@ -1,5 +1,5 @@
 <template>
-  <div data-column="two" data-size="1" class="column" ref="projects">
+  <div data-column="two" data-size="1" class="column active" ref="projects">
     <a class="enlarge button-pill" ref="button" @click="expand()">Projects</a>
     <div class="flex f-space-between column-head">
       <div class="items__title" :class="[{'flex': !activefilters}, { 'none': activefilters}]">
@@ -77,6 +77,7 @@ import Project from "@/components/Projects/project-components/ProjectComponent";
 import * as helpers from "@/helpers/home";
 
 import { mapState, mapGetters } from "vuex";
+let $ = require("jquery");
 
 export default {
   name: "Projetcs",
@@ -101,7 +102,6 @@ export default {
     this.$emit("created", { col: "projects" });
   },
   created() {
-    console.log("app");
     this.allProjects = this.projects;
   },
   methods: {
