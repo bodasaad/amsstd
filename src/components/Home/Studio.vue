@@ -11,7 +11,7 @@
     </div>
     <div class="information__text">
       <p>What does it mean to elevate the human experience?</p>
-      <p>Carr is an architecture and interior design studio based in Melbourne with a timeless approach that fosters connection.</p>
+      <p>AMS-Studio is a software & digital resources studio based in Egypt with a timeless approach that fosters connection.</p>
       <p>Every detail is thoughtfully considered, coalescing in work that forges new ground while remaining true to our philosophy and vision.</p>
     </div>
     <div class="information__buttons">
