@@ -20,7 +20,7 @@ export default {
     ...mapState(["two", "colWidth"])
   },
   mounted() {
-    // this.rail = this.$refs.two;
+    this.rail = this.$refs.two;
     // this.two.lastPos =
     //   (parseInt($(`.rail[data-rail="one"]`).css("left"), 10) /
     //     $(window).width()) *
