@@ -18,6 +18,12 @@ let router = new Router({
       component: () =>
         import(/* webpackChunkName: "studio" */ "@/views/Home.vue"),
     },
+    {
+      path: '*',
+      name: 'Not Found',
+      component: () =>
+        import(/* webpackChunkName: "studio" */ "@/views/404.vue"),
+    },
     ...studioRoutes,
     ...adminRoutes,
   ]
