@@ -320,6 +320,7 @@ export default {
 }
 #single-post .items__item {
   cursor: unset;
+  margin-bottom: 60px;
 }
 #reacts {
   position: sticky;
