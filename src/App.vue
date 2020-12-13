@@ -74,6 +74,8 @@ export default {
   watch: {
     //Use watch to monitor changes in $router
     $route(to, from) {
+      console.log(to)
+      console.log(from)
       if (from.name && to.name) {
         if (to.meta.index > from.meta.index) {
           //If the to index is larger than the from index, it is judged to be in the forward state, and vice versa, in the backward state.
