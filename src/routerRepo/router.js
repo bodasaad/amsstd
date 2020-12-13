@@ -9,7 +9,7 @@ Vue.use(Router);
 
 let router = new Router({
   mode: "hash",
-  // base: process.env.BASE_URL,
+  base: process.env.BASE_URL,
   routes: [
     {
       name: 'home',
