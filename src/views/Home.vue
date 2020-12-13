@@ -81,13 +81,13 @@ export default {
       this.enter = false;
     },
     checkFiltertion() {
-      const type = this.$route.params.type;
+      const type = this.$route.query.type;
       const category = this.$route.params.category;
       if (type && category) {
         if (type === "article") {
           this.$refs.articles.activefilters = true;
           document.querySelector(`a[data-article-id="${category}"]`).click();
-          this.$refs.projects.expand();
+          this.$refs.articles.expand();
         } else {
           this.$refs.projects.activefilters = true;
           document.querySelector(`a[data-project-id="${category}"]`).click();

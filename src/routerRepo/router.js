@@ -3,17 +3,19 @@ import Router from "vue-router";
 
 import adminRoutes from './admin/main.js'
 import studioRoutes from './studio/main.js'
+
+import NotFound from '../views/404.vue';
 Vue.use(Router);
 
 
 
 let router = new Router({
   mode: "history",
-  base: process.env.BASE_URL,
+  // base: process.env.BASE_URL,
   routes: [
     {
       name: 'home',
-      path: '/:category?/:type?',
+      path: '/:category?',
       meta: { index: 1 },
       component: () =>
         import(/* webpackChunkName: "studio" */ "@/views/Home.vue"),
@@ -21,8 +23,7 @@ let router = new Router({
     {
       path: '*',
       name: 'Not Found',
-      component: () =>
-        import(/* webpackChunkName: "studio" */ "@/views/404.vue"),
+      component: NotFound
     },
     ...studioRoutes,
     ...adminRoutes,
@@ -31,22 +32,23 @@ let router = new Router({
 
 
 
-// router.beforeEach((to, from, next) => {
-//   const token = localStorage.getItem("at");
-//   const expiryDate = localStorage.getItem("aed");
 
-//   if (to.matched.some(record => record.meta.requiredAuth)) {
-//     const oneday = 60 * 60 * 24 * 1000
-//     if (token == null || token === undefined || new Date(expiryDate) < oneday) {
-//       next({
-//         name: 'Login',
-//       });
-//     } else {
-//       next();
-//     }
-//   } else {
-//     return next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  const token = localStorage.getItem("at");
+  const expiryDate = localStorage.getItem("aed");
+  // console.log(to)
+  if (to.matched.some(record => record.meta.requiredAuth)) {
+    const oneday = 60 * 60 * 24 * 1000
+    if (token == null || token === undefined || new Date(expiryDate) < oneday) {
+      next({
+        name: 'Login',
+      });
+    } else {
+      next();
+    }
+  } else {
+    return next();
+  }
+});
 
 export default router;

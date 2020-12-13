@@ -39,7 +39,7 @@
           </div>
           <div class="meta__tags">
             <router-link
-              :to="{name:'home',  params:{ category:article.category, type:'article' }}"
+              :to="{name:'home',  params:{ category:article.category}, query: { type: 'article' }}"
               class="button-pill"
             >{{article.category}}</router-link>
           </div>

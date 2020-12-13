@@ -43,6 +43,7 @@ Vue.component("font-awesome-icon", FontAwesomeIcon);
 Vue.config.productionTip = false;
 export const bus = new Vue();
 
+Vue.config.productionTip = false
 
 new Vue({
   store,
