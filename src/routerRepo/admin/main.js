@@ -1,13 +1,13 @@
 export default [
 
     {
-        path: "/login",
+        path: "/admin/login",
         name: "Login",
         component: () =>
             import(/* webpackChunkName: "about" */ "@/components/Admin/pages/Login.vue"),
     },
     {
-        path: "/admin",
+        path: "/admin/dashboard",
         name: "Dashboard",
         component: () =>
             import(/* webpackChunkName: "about" */ "@/components/Admin/pages/Dashboard.vue"),
