@@ -47,7 +47,7 @@
             <a
               class="button-extend facebook"
               target="_blank"
-              :href="'https://www.facebook.com/sharer.php?u=http://192.168.1.4:3000/articles/' + article._id"
+              :href="'https://www.facebook.com/sharer.php?u=https://amsstudio.me/articles/' + article._id"
             >
               <div class="button-extend__text-wrapper">
                 <div class="button-extend__text">Share</div>
