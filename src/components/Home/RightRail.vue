@@ -21,11 +21,7 @@ export default {
   },
   mounted() {
     this.rail = this.$refs.two;
-    // this.two.lastPos =
-    //   (parseInt($(`.rail[data-rail="one"]`).css("left"), 10) /
-    //     $(window).width()) *
-    //     100 +
-    //   5;
+
   },
   methods: {
     getDragPointer(e) {

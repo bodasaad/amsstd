@@ -3,7 +3,7 @@
     <a class="enlarge button-pill" ref="button" @click="expand()">Articles</a>
     <div class="flex f-space-between column-head">
       <div class="items__title" :class="[{'flex': !activefilters}, { 'none': activefilters}]">
-        <span @click="expand()">Articles</span>
+        <span @click="expand()">Articless</span>
         <span>
           <i class="fas fa-times" @click="shrink"></i>
         </span>
