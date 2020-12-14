@@ -81,7 +81,7 @@
 
 <script>
 import { mapGetters, mapState } from "vuex";
-
+import hljs from "highlight.js";
 import { quillEditor } from "vue-quill-editor";
 export default {
   name: "createarticle",
@@ -96,7 +96,7 @@ export default {
       editorOption: {
         modules: {
           syntax: {
-            // highlight: text => hljs.highlightAuto(text).value
+            highlight: text => hljs.highlightAuto(text).value
           },
 
           toolbar: {

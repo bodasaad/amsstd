@@ -1,19 +1,34 @@
 <template>
-  <div class="column" data-size="1" data-column="three" ref="studio">
-    <a class="enlarge button-pill" ref="button" @click="expand()">Studio</a>
+  <div class="column" data-size="1" data-column="two" ref="contacts">
+    <a class="enlarge button-pill" ref="button">Studio</a>
     <div class="flex f-space-between column-head">
       <div class="items__title">
-        <span @click="expand()">Studio</span>
-        <span>
-          <i class="fas fa-times" @click="shrink()"></i>
-        </span>
+        <span>Contacts</span>
       </div>
     </div>
     <div class="information__text">
-      <p>What does it mean to elevate the human experience?</p>
-      <p>AMS-Studio is a software and digital resources studio based in Egypt with a timeless approach that fosters connection.</p>
-      <p>Every detail is thoughtfully considered, coalescing in work that forges new ground while remaining true to our philosophy and vision.</p>
+      <div>
+        <p>00201156565910</p>
+        <p>002015733394</p>
+        <p>amsstudio.e@gmail.com</p>
+        <p>1 Main st, cairo. Egypt</p>
+      </div>
+      <div>
+        <p>
+          <b>Follow Us</b>
+        </p>
+        <p>
+          <a href>LinkedIn</a>
+        </p>
+        <p>
+          <a href>Dev</a>
+        </p>
+        <p>
+          <a href>Facebook</a>
+        </p>
+      </div>
     </div>
+
     <div class="information__buttons">
       <a class="button-extend search" @click="opensearch($event)">
         <div class="button-extend__text-wrapper">
@@ -33,9 +48,9 @@
         </div>
       </a>
       <br />
-      <router-link class="button-extend newsletter" :to="{name:'contacts'}" >
+      <a class="button-extend newsletter">
         <div class="button-extend__text-wrapper">
-          <div class="button-extend__text">Contact</div>
+          <div class="button-extend__text">Newsletter</div>
         </div>
         <div class="button-extend__icon">
           <svg
@@ -58,10 +73,7 @@
             <path d="M0.5 5.5L7.5 8.5L14.5 5.5" stroke="black" />
           </svg>
         </div>
-      </router-link>
-      <!-- <a>
-     
-      </a>-->
+      </a>
       <br />
       <a class="button-extend loginPortalIcon" @click="openmail($event)">
         <div class="button-extend__text-wrapper">
@@ -99,6 +111,7 @@ import Footer from "@/components/Home/Footer.vue";
 import { mapState } from "vuex";
 import AuthPortal from "@/components/Home/AuthPortal.vue";
 import * as helpers from "@/helpers/home";
+
 export default {
   name: "Projetcs",
   data() {
@@ -107,6 +120,7 @@ export default {
     };
   },
   // props: ["width", "height"],
+
   components: {
     Footer: Footer,
     AuthPortal: AuthPortal

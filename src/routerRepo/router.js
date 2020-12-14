@@ -21,6 +21,13 @@ let router = new Router({
         import(/* webpackChunkName: "studio" */ "@/views/Home.vue"),
     },
     {
+      name: 'contacts',
+      path: '/our/contacts',
+      meta: { index: 1 },
+      component: () =>
+        import(/* webpackChunkName: "studio" */ "@/views/Contact.vue"),
+    },
+    {
       path: '*',
       name: 'Not Found',
       component: NotFound
@@ -38,7 +45,7 @@ router.beforeEach((to, from, next) => {
   const expiryDate = localStorage.getItem("aed");
   if (to.matched.some(record => record.meta.requiredAuth)) {
     console.log('requ');
-    
+
     const oneday = 60 * 60 * 24 * 1000
     if (token == null || token === undefined) {
       next({
