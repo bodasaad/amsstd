@@ -57,7 +57,9 @@ const getProjects = async ({ commit, rootState, state }) => {
 const addProject = async ({ commit, rootState, state }, { data }) => {
   const res = await Admin.addProject(data, state.jwt, rootState.url)
   checkAuth(res, commit)
-  commit('msg', { msg: res.msg, type: res.state ? 'success' : 'warning' })
+  
+  commit('msg', { msg: res.msg, type: res.state ? 'success' : 'warning' }, { root: true })
+
   return res.state ? true : false
 };
 const editProject = async ({ commit, rootState, state }, { data, id }) => {

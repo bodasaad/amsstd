@@ -7,7 +7,7 @@ const state = {
   allarticles: [],
   allprojects: [],
   allcategories:[],
-  jwt: localStorage.getItem('jwt'),
+  jwt: localStorage.getItem('at'),
   isAuth: false,
   msg: null
 };
