@@ -2,7 +2,7 @@
   <div id="auth-forms">
     <form class="login-portal-pane__form formLogin" @submit.prevent="login()">
       <div class="login-portal-pane__form-content">
-        <h3 class="form-heading">Login</h3>
+        <h3 class="form-heading" style="color:#ff8429;">Login</h3>
         <input
           type="email"
           id="wemail-client-forgot"
@@ -31,7 +31,7 @@
       autocomplete="off"
     >
       <div class="login-portal-pane__form-content">
-        <h3>Sign up</h3>
+        <h3 style="color:#ff8429;">Sign up</h3>
         <input type="text" id="name-client" name="name" placeholder="Name" autocomplete="off" />
         <input
           type="email"

@@ -22,13 +22,13 @@
               fill-rule="evenodd"
               clip-rule="evenodd"
               d="M15.5563 16.2637L4.94971 5.65714L5.65681 4.95003L16.2634 15.5566L15.5563 16.2637Z"
-              fill="black"
+              fill="#ff8429"
             />
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
               d="M4.95005 15.5566L15.5566 4.94995L16.2637 5.65706L5.65716 16.2637L4.95005 15.5566Z"
-              fill="black"
+              fill="#ff8429"
             />
           </svg>
         </div>
