@@ -147,12 +147,6 @@ body.portal-pane--show main {
   transform: translateX(-33.32vw);
 } */
 
-.login-portal-pane .login-portal-pane__text {
-  color: #fff;
-  padding: 16px;
-  margin-top: 154px;
-  margin-bottom: 0px;
-}
 .login-portal-pane .login-portal-pane__background {
   position: absolute;
   top: -10px;
@@ -175,7 +169,7 @@ body.portal-pane--show main {
 .login-portal-pane .login-portal-pane__text {
   color: #fff;
   padding: 16px;
-  margin-top: 154px;
+  margin-top: 20%;
   margin-bottom: 0px;
 }
 .login-portal-pane__form {
@@ -183,7 +177,7 @@ body.portal-pane--show main {
 }
 
 .login-portal-pane__form .login-portal-pane__form-content input {
-  color: #fff;
+  color: #000;
   border: 0;
   background-color: transparent;
   width: 95%;
@@ -198,14 +192,13 @@ body.portal-pane--show main {
 
 .login-portal-pane__form .login-portal-pane__form-content input[type="submit"] {
   font-size: 14px !important;
-  border: 1px solid #fff;
+  border: 1px solid #000 !important;
   border-radius: 20px;
   padding: 4px 10px;
   -webkit-transition: color 0.6s cubic-bezier(0.55, 0, 0.1, 1),
     background-color 0.6s cubic-bezier(0.55, 0, 0.1, 1);
   transition: color 0.6s cubic-bezier(0.55, 0, 0.1, 1),
     background-color 0.6s cubic-bezier(0.55, 0, 0.1, 1);
-  clear: both;
   display: block;
   cursor: pointer;
   margin-top: 31px;

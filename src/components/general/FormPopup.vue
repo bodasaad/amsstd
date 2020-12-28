@@ -107,7 +107,7 @@ export default {
   .login-portal-pane__form
   .login-portal-pane__form-content
   input {
-  border-color: var(--main-color);
+  border-color: #000;
   color: #000;
 }
 

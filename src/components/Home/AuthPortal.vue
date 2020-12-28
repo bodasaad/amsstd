@@ -22,13 +22,13 @@
               fill-rule="evenodd"
               clip-rule="evenodd"
               d="M15.5563 16.2637L4.94971 5.65714L5.65681 4.95003L16.2634 15.5566L15.5563 16.2637Z"
-              fill="#fff"
+              fill="#000"
             />
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
               d="M4.95005 15.5566L15.5566 4.94995L16.2637 5.65706L5.65716 16.2637L4.95005 15.5566Z"
-              fill="#fff"
+              fill="#000"
             />
           </svg>
         </div>
@@ -74,7 +74,7 @@ input:focus {
   left: 100%;
   bottom: 0;
   width: 33.33vw;
-  background-color: #000;
+  background-color: #fff;
   overflow: hidden;
   -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.55, 0, 0.1, 1);
   transition: -webkit-transform 0.6s cubic-bezier(0.55, 0, 0.1, 1);
@@ -112,7 +112,7 @@ body.portal-pane--show .login-portal-pane {
   right: 16px;
 }
 .login-portal-pane .login-portal-pane__text {
-  color: #fff;
+  color: #000;
   padding: 16px;
   margin-top: 20%;
   margin-bottom: 0px;
@@ -124,7 +124,6 @@ body.portal-pane--show .login-portal-pane {
   .login-portal-pane__form
   .login-portal-pane__form-content
   input {
-  color: #fff;
   border: 0;
   background-color: transparent;
   width: 95%;
@@ -133,7 +132,7 @@ body.portal-pane--show .login-portal-pane {
   font-size: 24px;
   line-height: 32px;
   padding: 15px 0;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #000;
   margin-bottom: 3px;
 }
 .login-portal-pane
