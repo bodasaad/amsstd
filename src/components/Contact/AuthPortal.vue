@@ -90,12 +90,7 @@ body.portal-pane--show .login-portal-pane {
   transform: translateX(-33.32vw);
 }
 
-.login-portal-pane .login-portal-pane__text {
-  color: #fff;
-  padding: 16px;
-  margin-top: 154px;
-  margin-bottom: 0px;
-}
+
 .login-portal-pane .login-portal-pane__background {
   position: absolute;
   top: -10px;
@@ -119,7 +114,7 @@ body.portal-pane--show .login-portal-pane {
 .login-portal-pane .login-portal-pane__text {
   color: #fff;
   padding: 16px;
-  margin-top: 154px;
+  margin-top: 20%;
   margin-bottom: 0px;
 }
 .login-portal-pane .login-portal-pane__form {
