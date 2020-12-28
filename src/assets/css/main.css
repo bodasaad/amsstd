@@ -261,7 +261,7 @@ body.search-pane--show .search-pane {
 
 .items__item .items__item-image img {
   width: 100%;
-  min-height: 260px;
+  min-height: 160px;
 }
 
 .items__item img, .items__item video {

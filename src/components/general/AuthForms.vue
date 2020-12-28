@@ -2,7 +2,7 @@
   <div id="auth-forms">
     <form class="login-portal-pane__form formLogin" @submit.prevent="login()">
       <div class="login-portal-pane__form-content">
-        <h3 class="form-heading" style="color:#ff8429;">Login</h3>
+        <h3 class="form-heading">Login</h3>
         <input
           type="email"
           id="wemail-client-forgot"
@@ -18,8 +18,8 @@
           v-model="password"
         />
         <p class="login-error" style="color: red;margin-top: 10px;"></p>
-        <a class="backLogin c-w m-r-3">Forgot Password!</a>
-        <a class="backLogin c-w m-l-3" @click="toggleForms( 'formSignup','formLogin' )">New Account!</a>
+        <a class="backLogin m-r-3">Forgot Password!</a>
+        <a class="backLogin m-l-3" @click="toggleForms( 'formSignup','formLogin' )"><b>New Account!</b></a>
         <input type="submit" value="Login" class="forgotBtn" />
       </div>
     </form>
@@ -31,7 +31,7 @@
       autocomplete="off"
     >
       <div class="login-portal-pane__form-content">
-        <h3 style="color:#ff8429;">Sign up</h3>
+        <h3>Sign up</h3>
         <input type="text" id="name-client" name="name" placeholder="Name" autocomplete="off" />
         <input
           type="email"
@@ -49,7 +49,7 @@
           autocomplete="false | unknown-autocomplete-value"
         />
         <p class="signup-error" style="color: red;margin-top: 10px;"></p>
-        <a class="forgotPassword c-w">
+        <a class="forgotPassword">
           Already have account
           <b @click="toggleForms('formLogin' , 'formSignup')">Login</b>
         </a>
@@ -93,7 +93,7 @@ export default {
         }
       });
       if (res) {
-        return
+        return;
       }
     },
     async login() {
@@ -146,7 +146,6 @@ body.portal-pane--show main {
   -webkit-transform: translateX(-33.32vw);
   transform: translateX(-33.32vw);
 } */
-
 
 .login-portal-pane .login-portal-pane__text {
   color: #fff;

@@ -2,7 +2,7 @@
   <div class="login-portal-pane" id="subscription">
     <div
       class="login-portal-pane__background"
-      style="background-image: url(https://www.carr.net.au/wp-2020/wp-content/uploads/2019/12/Carr_UnitedPlace_Corridor_08-2.jpg);"
+      style="background-image: url(https://ssir.org/images/blog/iStockmachinelearning592x333.jpg);"
     ></div>
     <div class="login-portal-pane__close">
       <div class="button-extend">
@@ -22,13 +22,13 @@
               fill-rule="evenodd"
               clip-rule="evenodd"
               d="M15.5563 16.2637L4.94971 5.65714L5.65681 4.95003L16.2634 15.5566L15.5563 16.2637Z"
-              fill="#ff8429"
+              fill="#fff"
             />
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
               d="M4.95005 15.5566L15.5566 4.94995L16.2637 5.65706L5.65716 16.2637L4.95005 15.5566Z"
-              fill="#ff8429"
+              fill="#fff"
             />
           </svg>
         </div>

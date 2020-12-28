@@ -108,18 +108,9 @@ export default {
   .login-portal-pane__form-content
   input {
   border-color: var(--main-color);
-  color: #333;
+  color: #000;
 }
-input[type="submit"] {
-  color: #111 !important;
-  border: 1px solid #333;
-}
-.forgotPassword {
-  color: #333 !important;
-}
-.backLogin {
-  color: #222 !important;
-}
+
 @media (min-width: 900px) {
   .auth-forms_box {
     height: auto;
