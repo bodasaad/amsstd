@@ -1,8 +1,33 @@
 <template>
   <div>
+    <router-link :to="{name:'home'}" class="button-pill button-pill--icon m-medium close">
+      <svg
+        data-v-4fdd230d
+        width="10"
+        height="10"
+        viewBox="0 0 10 10"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon-cross">
+        <path
+          data-v-4fdd230d
+          d="M0.146484 9.14722L9.14722 0.146484L9.85433 0.853591L0.853591 9.85433L0.146484 9.14722Z"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          fill="black"
+        />
+        <path
+          data-v-4fdd230d
+          d="M0.853637 0.14712L9.85361 9.14706L9.1465 9.85417L0.146531 0.854228L0.853637 0.14712Z"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          fill="black"
+        />
+      </svg>
+    </router-link>
     <loadingCom v-if="enter"></loadingCom>
     <div v-if="!enter" class="columns opacity-none">
-      <Contacts ref="contacts" ></Contacts>
+      <Contacts ref="contacts"></Contacts>
       <About ref="about"></About>
       <!-- <People ref="people"></People> -->
       <!-- <Rails :loading="loading" ref="rails" :refs="this.$refs"></Rails> -->
@@ -13,11 +38,11 @@
           <div class="button-pill active" data-column="one">About</div>
         </div>
         <div class="columns-footer__menu-item" @click="activeColumn('two', $event)">
-          <div class="button-pill " data-column="two">Contacts</div>
+          <div class="button-pill" data-column="two">Contacts</div>
         </div>
         <!-- <div class="columns-footer__menu-item" @click="activeColumn('three', $event)">
           <div class="button-pill" data-column="three">Studio</div>
-        </div> -->
+        </div>-->
       </div>
     </div>
   </div>

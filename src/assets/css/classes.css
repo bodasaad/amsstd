@@ -23,8 +23,8 @@
 
 
 .close {
-  position: absolute;
-  z-index: 10;
+  position: absolute !important;
+  z-index: 1000;
   right: 6px;
   top: 6px;
   color: #000;

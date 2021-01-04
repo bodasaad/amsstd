@@ -8,10 +8,10 @@
     </div>
     <div class="information__text">
       <div>
-        <p>00201156565910</p>
-        <p>002015733394</p>
-        <p>amsstudio.e@gmail.com</p>
-        <p>1 Main st, cairo. Egypt</p>
+        <p>Mobile: <b>00201156565910</b></p>
+        <p>Mobile: <b>00201553733394</b></p>
+        <p>Email: <b>amsstudio.e@gmail.com</b></p>
+        <p>Address: <b>1 Main st, cairo. Egypt</b></p>
       </div>
       <div>
         <p>
@@ -29,25 +29,8 @@
       </div>
     </div>
 
-    <div class="information__buttons">
-      <a class="button-extend search" @click="opensearch($event)">
-        <div class="button-extend__text-wrapper">
-          <div class="button-extend__text">Search</div>
-        </div>
-        <div class="button-extend__icon">
-          <svg
-            width="13"
-            height="13"
-            viewBox="0 0 13 13"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M8 8L12 12" stroke="black" />
-            <circle cx="5" cy="5" r="4" stroke="black" />
-          </svg>
-        </div>
-      </a>
-      <br />
+    <!-- <div class="information__buttons">
+   
       <a class="button-extend newsletter">
         <div class="button-extend__text-wrapper">
           <div class="button-extend__text">Newsletter</div>
@@ -97,7 +80,7 @@
           </svg>
         </div>
       </a>
-    </div>
+    </div> -->
     <div class="logo">
       <img src="@/assets/images/word.png" alt="logo" />
     </div>

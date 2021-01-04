@@ -228,7 +228,7 @@ body.search-pane--show .search-pane {
 }
 
 .column-head {
-  margin-bottom: 100px;
+  margin-bottom: 10vh;
   padding: var(--m-padding);
 }
 
