@@ -1,6 +1,5 @@
 <template>
   <div>
-    <router-link :to="{name:'allprojects'}">All Project</router-link>
     <form
       style="background-color:transparent;"
       class="parent-card form"
@@ -9,17 +8,26 @@
     >
       <div :class="{'loader-effect':loading}">
         <div class="form_inputs">
-          <h2 v-if="!edit">Create Project</h2>
-          <h2 v-if="edit">Edit Project</h2>
+          <div class="flex f-space-between">
+            <h2 v-if="!edit">Create Project</h2>
+            <h2 v-if="edit">Edit Project</h2>
+            <router-link class="btn" :to="{name:'allprojects'}">All Project</router-link>
+          </div>
           <div class="p-medium grid g-two">
             <div class="m-r-3">
               <div class="form-control">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title" v-model="title" required />
+                <input type="text" name="title" id="title" v-model="title" :class="{'required-input':alert}" />
               </div>
               <div class="form-control">
                 <label for="subtitle">Sub Title</label>
-                <input type="text" name="subtitle" id="subtitle" v-model="subtitle" required />
+                <input
+                  type="text"
+                  name="subtitle"
+                  id="subtitle"
+                  v-model="subtitle"
+                  :class="{'required-input':alert}"
+                />
               </div>
               <div class="form-control">
                 <label for="client">Client</label>
@@ -72,7 +80,16 @@
           </div>
           <div class="form-control">
             <label for="brief">Brief</label>
-            <textarea type="text" name="brief" id="brief" v-model="brief" rows="4" cols="50"></textarea>
+            <textarea
+              style="min-height:100px"
+              type="text"
+              name="brief"
+              id="brief"
+              v-model="brief"
+              rows="40"
+              cols="50"
+              :class="{'required-input':alert}"
+            ></textarea>
           </div>
           <div class="bg-darkgray p-3">
             <div class="form-control">
@@ -82,7 +99,7 @@
                 name="contentText"
                 id="contentText"
                 v-model="contentText"
-                rows="4"
+                rows="10"
                 cols="50"
               ></textarea>
             </div>
@@ -130,6 +147,7 @@ export default {
   data() {
     return {
       loading: false,
+      alert: false,
       edit: false,
       loaded: false,
       title: null,
@@ -156,10 +174,9 @@ export default {
     if (id) {
       this.edit = true;
       if (this.allprojects.length == 0) {
-        this.loading= true
+        this.loading = true;
         await this.$store.dispatch("admin/getProjects");
-        this.loading= false
-
+        this.loading = false;
       }
       const project = this.projectById(id);
 
@@ -189,7 +206,9 @@ export default {
       this.tags = this.tags.filter(t => t != tag);
     },
     async addContent(img) {
-      if (this.contentText != "") {
+      console.log(this.contentText);
+
+      if (this.contentText) {
         this.content.push({
           _id: this.content.length + 1,
           text: this.contentText,
@@ -197,11 +216,10 @@ export default {
           image: img || ""
         });
       }
-      this.contentText = ''
+      this.contentText = "";
     },
     async removeContent(id) {
       // let parsed = JSON.parse(JSON.stringify(this.content));
-      console.log(id.toString());
 
       const item = this.content.find(c => c._id.toString() == id.toString());
 
@@ -221,21 +239,22 @@ export default {
     async uploadImage() {
       const elm = document.getElementById("contentImg");
       if (elm.files.length == 0) return this.addContent("");
+      if (this.contentText) {
+        var file = elm.files[0];
+        var validImageTypes = ["image/jpg", "image/jpeg", "image/png"];
+        var fileType = file["type"];
+        if (validImageTypes.includes(fileType)) {
+          var form = new FormData();
+          form.append("image", file);
 
-      var file = elm.files[0];
-      var validImageTypes = ["image/jpg", "image/jpeg", "image/png"];
-      var fileType = file["type"];
-      if (validImageTypes.includes(fileType)) {
-        var form = new FormData();
-        form.append("image", file);
-
-        //upload image to server
-        const res = await fetch("https://ams-server.xyz/admin/media", {
-          method: "Post",
-          body: form
-        });
-        const json = await res.json();
-        this.addContent(json);
+          //upload image to server
+          const res = await fetch("https://ams-server.xyz/admin/media", {
+            method: "Post",
+            body: form
+          });
+          const json = await res.json();
+          this.addContent(json);
+        }
       }
     },
     async deleteImage(name) {
@@ -250,6 +269,9 @@ export default {
       // const json = await res.json();
     },
     async createProject() {
+      if (!this.title || !this.subtitle || !this.brief) {
+        return (this.alert = true);
+      }
       const data = new FormData();
       data.append("title", this.title);
       data.append("subtitle", this.subtitle);

@@ -28,6 +28,14 @@ let router = new Router({
         import(/* webpackChunkName: "studio" */ "@/views/Contact.vue"),
     },
     {
+      path: "/admin/dashboard",
+      name: "dashboard",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "@/components/Admin/pages/Dashboard.vue"),
+      meta: { requiredAuth: true },
+
+    },
+    {
       path: '*',
       name: 'Not Found',
       component: NotFound
@@ -46,6 +54,7 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiredAuth)) {
 
     const oneday = 60 * 60 * 24 * 1000
+
     if (token == null || token === undefined) {
       next({
         name: 'Login',

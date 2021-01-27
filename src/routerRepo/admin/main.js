@@ -6,14 +6,7 @@ export default [
         component: () =>
             import(/* webpackChunkName: "about" */ "@/components/Admin/pages/Login.vue"),
     },
-    {
-        path: "/admin/dashboard",
-        name: "Dashboard",
-        component: () =>
-            import(/* webpackChunkName: "about" */ "@/components/Admin/pages/Dashboard.vue"),
-        meta: { requiredAuth: true },
 
-    },
     {
         path: "/admin/articles",
         name: "allarticles",

@@ -65,6 +65,7 @@
     border-radius: var(--l-radius);
     grid-auto-rows: 35px auto;
     border: 1.3px solid #ccc;
+    min-height: 125px;
   }
   .content-item_bar{
     border-bottom: 1px solid #ccc;
@@ -80,10 +81,10 @@
   }
 
   .content-item_body_img{
-    width: 65px;
-    height: 65px;
+    /* width: 65px; */
+    height: 70px;
+    margin: var(--s-margin) 0;
     border-radius: 5px;
-    /* border: 1px solid #ccc; */
   }
   .content-item_body p{
     color: #000;

@@ -1,7 +1,12 @@
 <template>
   <div>
-    <h1>All Projects</h1>
+    <router-link  :to="{name:'dashboard'}">Dashboard</router-link>
+
     <div class="content" :class="{'loader-effect':loading}">
+      <div class="flex f-space-between">
+        <h1>All Projects</h1>
+        <router-link class="btn btn-success" :to="{name:'newproject'}">New Project</router-link>
+      </div>
       <div v-if="!loading" class="grid g-three">
         <div v-for="a of allprojects" :key="a._id" class="content-item p-relative">
           <router-link :to="{name:'newproject',params: { id: a._id }}">
@@ -13,6 +18,7 @@
                 <i class="fas fa-trash c-r m-l-3" @click="deleteProject(a._id)"></i>
               </div>
             </div>
+            <img class="content-item_body_img" :src="url +'/'+ a.image" alt />
             <h3>{{a.title}}</h3>
           </router-link>
         </div>
