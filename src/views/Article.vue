@@ -227,39 +227,63 @@ export default {
   created() {
     this.getArticle(this.$route.params.id);
   },
-  head: {
-    title: function() {
+  metaInfo() {
+    const article = this.article;
+    if (article) {
       return {
-        // Use page values for head
-        inner: this.article.title,
-        id: "app_head",
-        complement: "", // THAT IS NOT APPLIED
-        separator: "" // THAT IS NOT APPLIED
+        title: article.title,
+        meta: [
+          { name: "AMS STUDIOS", content: "AMS STUDIOS | Digital Agency" },
+          {
+            name: "description",
+            content: article.site_description,
+            id: "desc"
+          },
+          {
+            property: "og:title",
+            content: article.title
+          },
+          {
+            property: "og:image",
+            content: ""
+          }
+        ]
       };
-    },
-    meta: function() {
-      return [
-        {
-          name: "description",
-          content: this.article.site_description,
-          id: "description"
-        },
-        {
-          name: "theme-color",
-          content: "#ff8429",
-          id: "theme-color"
-        },
-        {
-          property: "og:title",
-          content: this.article.title
-        },
-        {
-          property: "og:image",
-          content: this.url +'/'+  this.article.image
-        }
-      ];
     }
   },
+  // head: {
+  //   title: function() {
+  //     return {
+  //       // Use page values for head
+  //       inner: this.article.title,
+  //       id: "app_head",
+  //       complement: "", // THAT IS NOT APPLIED
+  //       separator: "" // THAT IS NOT APPLIED
+  //     };
+  //   },
+  //   meta: function() {
+  //     return [
+  //       {
+  //         name: "description",
+  //         content: this.article.site_description,
+  //         id: "description"
+  //       },
+  //       {
+  //         name: "theme-color",
+  //         content: "#ff8429",
+  //         id: "theme-color"
+  //       },
+  //       {
+  //         property: "og:title",
+  //         content: this.article.title
+  //       },
+  //       {
+  //         property: "og:image",
+  //         content: this.url +'/'+  this.article.image
+  //       }
+  //     ];
+  //   }
+  // },
   methods: {
     async getArticle(id) {
       if (this.articles.length == 0) {

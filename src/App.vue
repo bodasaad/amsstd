@@ -60,43 +60,36 @@ export default {
     ...mapActions(["logout"])
     // ...mapMutations("studio", ["checkauthintecated"])
   },
-  head: {
-    title: function() {
-      return {
-        // Use page values for head
-        inner: this.article.title,
-        id: "app_head",
-        complement: "", // THAT IS NOT APPLIED
-        separator: "" // THAT IS NOT APPLIED
-      };
-    },
-    meta: function() {
-      return [
-        {
-          name: "description",
-          content: 'Software company - website - web app - softwares - digital agency - amsstudio - ams studio - applications - articles - blog - software - websites company',
-          id: "description"
-        },
-        {
-          name: "theme-color",
-          content: "#ff8429",
-          id: "theme-color"
-        },
-        {
-          property: "og:title",
-          content: 'AMS STUDIO'
 
-        },
-        {
-          property: "og:image",
-          content: ''
-        }
-      ];
-    }
+  metaInfo: {
+    title: "AMS STUDIO | Digital Agency",
+    meta: [
+      { name: "AMS STUDIO", content: "AMS STUDIO | Digital Agency" },
+      {
+        name: "description",
+        content:
+          "Software company - website - web app - softwares - digital agency - amsstudio - ams studio - applications - articles - blog - software - websites company",
+        id: "desc"
+      },
+      {
+        name: "theme-color",
+        content: "#ff8429",
+        id: "theme-color"
+      },
+      {
+        property: "og:title",
+        content: "AMS STUDIO"
+      },
+      {
+        property: "og:image",
+        content: ""
+      }
+    ]
   },
+
   created() {
     console.log(this);
-    
+
     this.$store.commit("studio/checkauthintecated");
 
     if (this.categories.length == 0) {
@@ -105,10 +98,8 @@ export default {
       this.loading = false;
     }
   },
- 
-  methods: {
 
-  },
+  methods: {},
   watch: {
     //Use watch to monitor changes in $router
     $route(to, from) {
