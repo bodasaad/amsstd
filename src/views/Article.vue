@@ -227,15 +227,44 @@ export default {
   created() {
     this.getArticle(this.$route.params.id);
   },
+  head: {
+    title: function() {
+      return {
+        // Use page values for head
+        inner: this.article.title,
+        id: "app_head",
+        complement: "", // THAT IS NOT APPLIED
+        separator: "" // THAT IS NOT APPLIED
+      };
+    },
+    meta: function() {
+      return [
+        {
+          name: "description",
+          content: this.article.site_description,
+          id: "description"
+        },
+        {
+          name: "theme-color",
+          content: "#ff8429",
+          id: "theme-color"
+        }
+      ];
+    }
+  },
   methods: {
     async getArticle(id) {
       if (this.articles.length == 0) {
         await this.$store.dispatch("studio/getAllArticles");
       }
       this.article = this.articleById(id);
+      var self = this;
+      self.$emit("updateHead");
+
       this.article && (this.loading = false);
       this.newview(id);
     },
+
     async newview(id) {
       await this.$store.dispatch("studio/newview", { id: id, item: "article" });
     },

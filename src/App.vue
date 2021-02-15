@@ -18,6 +18,8 @@
     <link href="https://cdn.quilljs.com/1.2.6/quill.bubble.css" rel="stylesheet" />
     <link href="https://cdn.quilljs.com/1.2.6/quill.core.css" rel="stylesheet" />
     <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet" />
+    <link rel="icon" href="@/assets/images/word.png" />
+
     <SearchComponent></SearchComponent>
     <MessageComponent v-if="msg" :msg="msg"></MessageComponent>
     <!-- <div class="wrapper"> -->
@@ -49,18 +51,18 @@ export default {
   },
   components: {
     MessageComponent: MessageComponent,
-    SearchComponent: SearchComponent,
+    SearchComponent: SearchComponent
   },
   props: {},
   computed: {
     ...mapState(["msg", "pageTransition", "categories"]),
     // ...mapState('admin',["msg"]),
-    ...mapActions(["logout"]),
+    ...mapActions(["logout"])
     // ...mapMutations("studio", ["checkauthintecated"])
-
   },
-
+ 
   created() {
+    console.log(this);
     
     this.$store.commit("studio/checkauthintecated");
 
@@ -70,7 +72,10 @@ export default {
       this.loading = false;
     }
   },
-  methods: {},
+ 
+  methods: {
+
+  },
   watch: {
     //Use watch to monitor changes in $router
     $route(to, from) {
@@ -99,9 +104,9 @@ export default {
   overflow: hidden;
   widows: 100vw;
 }
-.slide-left,.slide-right{
+.slide-left,
+.slide-right {
   height: 100vh;
-
 }
 
 /* .slide-right-enter{
@@ -111,40 +116,37 @@ export default {
 .slide-right-leave-active,
 .slide-left-enter-active,
 .slide-left-leave-active {
-  will-change: transform ,opacity;
+  will-change: transform, opacity;
   position: absolute;
   width: 100vw;
   height: 100vh;
   transition: all 500ms;
-
 }
 
 .slide-left-enter-active {
   /* transition: all 1300ms; */
   opacity: 0;
 }
-.slide-left-enter-to{
+.slide-left-enter-to {
   opacity: 1;
 }
 /* .slide-right-enter { */
-  /* filter: blur(10px); */
-  /* transition: all 300ms; */
-  /* opacity: 0; */
-  /* transform: translate3d(0, 0, 0); */
+/* filter: blur(10px); */
+/* transition: all 300ms; */
+/* opacity: 0; */
+/* transform: translate3d(0, 0, 0); */
 
-  /* transform: translate3d(100%, 0, 0); */
+/* transform: translate3d(100%, 0, 0); */
 
 /* } */
-.slide-right-enter{
+.slide-right-enter {
   transform: translate3d(100%, 0, 0);
-
 }
 .slide-right-enter-active {
   transform: translate3d(-100%, 0, 0);
 }
-.slide-right-enter-to{
+.slide-right-enter-to {
   transform: translate3d(0, 0, 0);
-
 }
 .slide-right-leave-active {
   /* transition: all 700ms; */
@@ -153,11 +155,10 @@ export default {
   opacity: 0;
   z-index: 999999999999;
 }
-.slide-right-leave-to{
+.slide-right-leave-to {
   /* display: none; */
   background: red !important;
-
-} 
+}
 .slide-left-enter {
   transform: translate3d(100%, 0, 0);
 }

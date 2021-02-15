@@ -15,6 +15,10 @@
             <input type="text" name="title" id="name" v-model="title" />
           </div>
           <div class="form-control">
+            <label for="site_description">Site Description</label>
+            <input type="text" name="site_description" id="site_description" v-model="site_description" />
+          </div>
+          <div class="form-control">
             <label for="image">image</label>
             <input type="file" name="image" id="itemImg" @change="previewFiles" />
           </div>
@@ -91,6 +95,7 @@ export default {
       title: null,
       category: "",
       image: "",
+      site_description:"",
       tags: [],
       content: "<p>example content</p>",
       editorOption: {
@@ -165,6 +170,7 @@ export default {
       const article = this.articleById(id);
       this.title = article.title;
       this.tags = article.tags;
+      this.site_description = article.site_description;
       this.category = article.category;
       this.content = article.content;
       return article && (this.loading = false);
@@ -226,6 +232,7 @@ export default {
       data.append("tags", JSON.stringify(this.tags));
       data.append("title", this.title);
       data.append("category", this.category);
+      data.append("site_description", this.site_description);
       data.append("image", this.image);
       if (this.edit) {
         const id = this.$route.params.id;
@@ -242,6 +249,7 @@ export default {
         this.content = "";
         this.title = "";
         this.tags = [];
+        this.site_description = '';
         this.image = "";
       }
     }

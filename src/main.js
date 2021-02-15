@@ -11,6 +11,7 @@ import store from "./store";
 import * as moment from 'moment'
 import VDragged from "v-dragged";
 
+import VueHead from 'vue-head'
 import VueDragResize from 'vue-drag-resize'
 
 import hljs from 'highlight.js'
@@ -33,6 +34,7 @@ Vue.use(VueQuillEditor)
 Vue.component('vue-drag-resize', VueDragResize)
 
 Vue.use(moment)
+Vue.use(VueHead)
 Vue.use(VDragged);
 
 
