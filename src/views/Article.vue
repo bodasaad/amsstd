@@ -248,6 +248,14 @@ export default {
           name: "theme-color",
           content: "#ff8429",
           id: "theme-color"
+        },
+        {
+          property: "og:title",
+          content: this.article.title
+        },
+        {
+          property: "og:image",
+          content: this.url +'/'+  this.article.image
         }
       ];
     }

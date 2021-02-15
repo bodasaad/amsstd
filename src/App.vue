@@ -60,7 +60,40 @@ export default {
     ...mapActions(["logout"])
     // ...mapMutations("studio", ["checkauthintecated"])
   },
- 
+  head: {
+    title: function() {
+      return {
+        // Use page values for head
+        inner: this.article.title,
+        id: "app_head",
+        complement: "", // THAT IS NOT APPLIED
+        separator: "" // THAT IS NOT APPLIED
+      };
+    },
+    meta: function() {
+      return [
+        {
+          name: "description",
+          content: 'Software company - website - web app - softwares - digital agency - amsstudio - ams studio - applications - articles - blog - software - websites company',
+          id: "description"
+        },
+        {
+          name: "theme-color",
+          content: "#ff8429",
+          id: "theme-color"
+        },
+        {
+          property: "og:title",
+          content: 'AMS STUDIO'
+
+        },
+        {
+          property: "og:image",
+          content: ''
+        }
+      ];
+    }
+  },
   created() {
     console.log(this);
     

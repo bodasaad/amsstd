@@ -59,7 +59,7 @@ export default {
     title: function() {
       return {
         // Use page values for head
-        inner: 'AMS-Studio',
+        inner: 'AMS Studio',
         id: "app_head",
         complement: "", // THAT IS NOT APPLIED
         separator: "" // THAT IS NOT APPLIED
@@ -71,11 +71,6 @@ export default {
           name: "description",
           content: 'Software company - website - web app - softwares - digital agency - amsstudio - ams studio - applications - articles - blog - software - websites company',
           id: "description"
-        },
-        {
-          name: "theme-color",
-          content: "#ff8429",
-          id: "theme-color"
         }
       ];
     },
