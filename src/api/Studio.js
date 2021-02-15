@@ -1,4 +1,4 @@
-import { request } from '@/api/request'
+import { request } from './request'
 
 export default class Studio {
 
@@ -10,4 +10,25 @@ export default class Studio {
     static async react(id, react, url, jwt) { return await request(`${url}/feed/react/${id}?react=${react}`, 'put', JSON.stringify({ message: "Liked" }), true, jwt) }
     static async newview(id, item, url) { return await request(`${url}/feed/view/${id}?item=${item}`, 'put', JSON.stringify({ message: "new" }), true, null) }
 
+    static async getsitemapArticles(url) {
+        const res = await request(`${url}/feed/articles`, 'get', {}, true)
+
+        const articles = res.json.map(a => ({
+            id: a._id,
+            title: a.title,
+            category: a.category
+        }))
+        return articles
+    }
+
+    static async getsitemapProjects(url) {
+        const res = await request(`${url}/feed/projects`, 'get', {}, true)
+        const projects = res.json.map(a => ({
+            id: a._id,
+            title: a.title,
+            category: a.category
+        }))
+
+        return projects
+    }
 }

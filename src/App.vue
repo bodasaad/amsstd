@@ -18,7 +18,7 @@
     <link href="https://cdn.quilljs.com/1.2.6/quill.bubble.css" rel="stylesheet" />
     <link href="https://cdn.quilljs.com/1.2.6/quill.core.css" rel="stylesheet" />
     <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet" />
-    <link rel="icon" href="@/assets/images/word.png" />
+    <link rel="icon" href="@/assets/images/Mix.png" />
 
     <SearchComponent></SearchComponent>
     <MessageComponent v-if="msg" :msg="msg"></MessageComponent>
@@ -69,7 +69,13 @@ export default {
         name: "description",
         content:
           "Software company - website - web app - softwares - digital agency - amsstudio - ams studio - applications - articles - blog - software - websites company",
-        id: "desc"
+        vmid: "desc"
+      },
+      {
+        name: "og:description	",
+        content:
+          "Software company - website - web app - softwares - digital agency - amsstudio - ams studio - applications - articles - blog - software - websites company",
+        vmid: "ogdesc"
       },
       {
         name: "theme-color",

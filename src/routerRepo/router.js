@@ -11,27 +11,43 @@ Vue.use(Router);
 
 let router = new Router({
   mode: "history",
-  // base: process.env.BASE_URL,
+  base: process.env.BASE_URL,
   routes: [
     {
       name: 'home',
       path: '/:category?',
-      meta: { index: 1 },
+      meta: {
+        index: 1,
+        sitemap: {
+          // For dynamic routes with multiple parameters,
+          // each slug must be an object with a key for
+          // each parameter
+          slugs: [
+            {
+              id: 1,
+              title: 'Home',
+              category: 'General',
+            },
+          ]
+        }
+      },
       component: () =>
-        import(/* webpackChunkName: "studio" */ "@/views/Home.vue"),
+        import(/* webpackChunkName: "Home" */ "../views/Home.vue"),
+
     },
+
     {
       name: 'contacts',
       path: '/our/contacts',
       meta: { index: 1 },
       component: () =>
-        import(/* webpackChunkName: "studio" */ "@/views/Contact.vue"),
+        import(/* webpackChunkName: "Contact" */ "../views/Contact.vue"),
     },
     {
       path: "/admin/dashboard",
       name: "dashboard",
       component: () =>
-        import(/* webpackChunkName: "about" */ "@/components/Admin/pages/Dashboard.vue"),
+        import(/* webpackChunkName: "Dashboard" */ "../components/Admin/pages/Dashboard.vue"),
       meta: { requiredAuth: true },
 
     },

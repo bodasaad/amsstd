@@ -1,5 +1,6 @@
 async function request(url, method, body, contentType, jwt) {
     let res
+    
     try {
         if (contentType) {
             if (method === 'post' || method === 'put') {
@@ -43,13 +44,15 @@ async function request(url, method, body, contentType, jwt) {
 
         }
         const json = await res.json()
+
         if (res.status == 200 || res.status == 201) {
+
             return { msg: json.message, json, state: true, code: res.status }
         } else {
             return { state: false, msg: json.message, code: res.status }
         }
     } catch (error) {
-        return { state: false, msg: 'Something went wrong, please try again', code:500 }
+        return { state: false, msg: 'Something went wrong, please try again', code: 500 }
     }
 }
 

@@ -237,7 +237,12 @@ export default {
           {
             name: "description",
             content: article.site_description,
-            id: "desc"
+            vmid: "desc"
+          },
+          {
+            name: "og:description	",
+            content: article.site_description,
+            vmid: "ogdesc"
           },
           {
             property: "og:title",

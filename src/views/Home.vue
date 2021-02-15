@@ -55,26 +55,7 @@ export default {
     ...mapState(["one", "two", "colWidth"]),
     ...mapState("studio", ["articles", "projects", "ready"])
   },
-  // head: {
-  //   title: function() {
-  //     return {
-  //       // Use page values for head
-  //       inner: 'AMS Studio',
-  //       id: "app_head",
-  //       complement: "", // THAT IS NOT APPLIED
-  //       separator: "" // THAT IS NOT APPLIED
-  //     };
-  //   },
-  //   meta: function() {
-  //     return [
-  //       {
-  //         name: "description",
-  //         content: 'Software company - website - web app - softwares - digital agency - amsstudio - ams studio - applications - articles - blog - software - websites company',
-  //         id: "description"
-  //       }
-  //     ];
-  //   },
-  // },
+ 
   mounted() {
     if (this.ready == 2) {
       this.start();
