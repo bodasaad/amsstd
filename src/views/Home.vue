@@ -10,10 +10,10 @@
     <div class="columns-footer" v-if="!enter">
       <div class="columns-footer__menu">
         <div class="columns-footer__menu-item" @click="activeColumn('one', $event)">
-          <div class="button-pill" data-column="one">Articles</div>
+          <div class="button-pill" data-column="one">Blog</div>
         </div>
         <div class="columns-footer__menu-item" @click="activeColumn('two', $event)">
-          <div class="button-pill active" data-column="two">Projects</div>
+          <div class="button-pill active" data-column="two">Portfolio</div>
         </div>
         <div class="columns-footer__menu-item" @click="activeColumn('three', $event)">
           <div class="button-pill" data-column="three">Studio</div>

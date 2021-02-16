@@ -10,6 +10,7 @@ import "@/assets/css/admin.css"
 import store from "./store";
 import * as moment from 'moment'
 import VDragged from "v-dragged";
+import LazyLoadDirective from "./directives/LazyLoadDirective.jsLazyLoadDirective";
 
 // import VueHead from 'vue-head'
 import VueDragResize from 'vue-drag-resize'
@@ -23,12 +24,14 @@ hljs.configure({
 window.hljs = hljs;
 
 import VueQuillEditor from 'vue-quill-editor'
+Vue.directive("lazyload", LazyLoadDirective);
 
 
 // require styles
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
+import './registerServiceWorker'
 
 Vue.use(VueQuillEditor)
 

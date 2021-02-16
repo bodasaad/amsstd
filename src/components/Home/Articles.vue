@@ -1,11 +1,15 @@
 <template>
-  <div class="column " data-column="one" id="colOne" data-size="1" ref="articles">
+  <div class="column" data-column="one" id="colOne" data-size="1" ref="articles">
     <a class="enlarge button-pill" ref="button" @click="expand()">Articles</a>
     <div class="flex f-space-between column-head">
       <div class="items__title" :class="[{'flex': !activefilters}, { 'none': activefilters}]">
-        <span @click="expand()">Articless</span>
+        <span @click="expanded? shrink():expand()">Blog</span>
         <span>
-          <i class="fas fa-times" @click="shrink"></i>
+          <i
+            class="fas"
+            :class="[{'fa-arrows-alt-h': !expanded}, { 'fa-times': expanded}]"
+            @click="expanded? shrink():expand()"
+          ></i>
         </span>
       </div>
       <div class="filters" style="right: 124px;">
@@ -23,7 +27,7 @@
           </div>
         </div>
         <div class="filters__toggle">
-          <div class="button-extend button-extend--small button-extend--with-hover show">
+          <div  class="button-extend button-extend--small button-extend--with-hover show">
             <div class="button-extend__icon" v-on:click="activefilters = !activefilters">
               <svg
                 v-if="!activefilters"
@@ -84,7 +88,8 @@ export default {
   data() {
     return {
       activefilters: false,
-      allarticles: []
+      allarticles: [],
+      expanded: false
     };
   },
   components: { Article: Article },
@@ -95,13 +100,14 @@ export default {
   },
   props: ["articles"],
   mounted() {
-    this.$emit("created",{col:'articles'});
+    this.$emit("created", { col: "articles" });
   },
   created() {
     this.allarticles = this.articles;
   },
   methods: {
     shrink() {
+      this.expanded = false;
       helpers.changePositions({
         one: { right: 66.6, left: 33.3 },
         two: { right: 33.3, left: 66.6 }
@@ -109,6 +115,8 @@ export default {
       helpers.shrink();
     },
     expand() {
+      this.expanded = true;
+
       helpers.changePositions({
         one: { right: 10, left: this.two.min - 5 },
         two: { right: 100 - this.two.min, left: this.two.min }

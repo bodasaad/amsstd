@@ -6,32 +6,34 @@
         <div class="before"></div>
         <div class="after"></div>
       </div>-->
-      <router-link :to="{name:'home'}" class="button-pill button-pill--icon m-medium">
-        <svg
-          data-v-4fdd230d
-          width="10"
-          height="10"
-          viewBox="0 0 10 10"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          class="icon-cross"
-        >
-          <path
+      <div class="close">
+        <router-link :to="{name:'home'}" class="button-pill button-pill--icon m-medium">
+          <svg
             data-v-4fdd230d
-            d="M0.146484 9.14722L9.14722 0.146484L9.85433 0.853591L0.853591 9.85433L0.146484 9.14722Z"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            fill="black"
-          />
-          <path
-            data-v-4fdd230d
-            d="M0.853637 0.14712L9.85361 9.14706L9.1465 9.85417L0.146531 0.854228L0.853637 0.14712Z"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            fill="black"
-          />
-        </svg>
-      </router-link>
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon-cross"
+          >
+            <path
+              data-v-4fdd230d
+              d="M0.146484 9.14722L9.14722 0.146484L9.85433 0.853591L0.853591 9.85433L0.146484 9.14722Z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="black"
+            />
+            <path
+              data-v-4fdd230d
+              d="M0.853637 0.14712L9.85361 9.14706L9.1465 9.85417L0.146531 0.854228L0.853637 0.14712Z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="black"
+            />
+          </svg>
+        </router-link>
+      </div>
       <div v-if="!loading">
         <div class="items__item">
           <div class="items__item-title">
@@ -256,39 +258,7 @@ export default {
       };
     }
   },
-  // head: {
-  //   title: function() {
-  //     return {
-  //       // Use page values for head
-  //       inner: this.article.title,
-  //       id: "app_head",
-  //       complement: "", // THAT IS NOT APPLIED
-  //       separator: "" // THAT IS NOT APPLIED
-  //     };
-  //   },
-  //   meta: function() {
-  //     return [
-  //       {
-  //         name: "description",
-  //         content: this.article.site_description,
-  //         id: "description"
-  //       },
-  //       {
-  //         name: "theme-color",
-  //         content: "#ff8429",
-  //         id: "theme-color"
-  //       },
-  //       {
-  //         property: "og:title",
-  //         content: this.article.title
-  //       },
-  //       {
-  //         property: "og:image",
-  //         content: this.url +'/'+  this.article.image
-  //       }
-  //     ];
-  //   }
-  // },
+  
   methods: {
     async getArticle(id) {
       if (this.articles.length == 0) {

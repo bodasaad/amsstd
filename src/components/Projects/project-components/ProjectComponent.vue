@@ -2,9 +2,11 @@
   <div>
     <router-link :to="{name:'projects', params:{ id:project._id }}">
       <div class="items__item">
-        <div class="items__item-image">
-          <img :src="this.url +'/'+ project.image" alt />
-        </div>
+           <ImageItem
+          class="items__item-image"
+          v-if="project.image"
+          :source="this.url +'/'+ project.image"
+        ></ImageItem>
         <div class="items__item-date">{{project.date}}</div>
         <div class="items__item-title">
           <span class>{{project.title}}</span>
@@ -18,6 +20,8 @@
 </template>
 
 <script>
+import ImageItem from "../../general/ImageItem";
+
 import { mapState } from "vuex";
 export default {
   name: "ProjectComponent",
@@ -39,7 +43,9 @@ export default {
   },
   props: ["project"],
   created() {},
-  components: {},
+  components: {
+    ImageItem:ImageItem
+  },
   methods: {}
 };
 </script>

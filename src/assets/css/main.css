@@ -199,7 +199,9 @@ body.search-pane--show .search-pane {
 .column[data-size="0"] {
   overflow: hidden !important;
 }
-
+.column[data-size="0"] .filters__toggle{
+  display: none;
+}
 .column[data-blur="true"] {
   filter: blur(3px);
 }
@@ -277,7 +279,7 @@ body.search-pane--show .search-pane {
 }
 
 .items__item .items__item-date {
-  margin-bottom: 10px;
+  margin: 10px 0;
   font-size: 14px;
   line-height: 18px;
   letter-spacing: 1.2px;
@@ -370,6 +372,7 @@ body.search-pane--show .search-pane {
   line-height: 32px;
   padding: 0;
   text-align: center;
+  background-color: #fff;
 }
 
 a.button-pill.active, a.button-pill:hover {
@@ -458,6 +461,8 @@ a.button-pill.active, a.button-pill:hover {
 }
 
 .button-extend .button-extend__icon {
+  background-color: #fff;
+  border-radius: 50px;
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -525,6 +530,7 @@ a.button-pill.active, a.button-pill:hover {
   top: 172px;
   right: 16px;
   text-align: right;
+  margin: var(--m-margin) 0;
 }
 
 .form_inputs {
@@ -574,7 +580,7 @@ a.button-pill.active, a.button-pill:hover {
   }
   .column-head {
     margin-bottom: 0px;
-    pointer-events: none;
+    /* pointer-events: none; */
   }
   .rails {
     display: none;
@@ -588,6 +594,10 @@ a.button-pill.active, a.button-pill:hover {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
+  #single-post .items__item-title {
+    font-size: 37px !important;
+
+  }
   .items__item-title {
     padding: var(--m-padding) !important;
   }

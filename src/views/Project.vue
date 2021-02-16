@@ -2,36 +2,34 @@
   <div>
     <div :class="{'loader-effect':loading}">
       <div v-if="!loading">
-        <div class="close">
-          <router-link :to="{name:'home'}" class="button-extend">
-            <div class="button-extend__text-wrapper">
-              <div class="button-extend__text">Close</div>
-            </div>
-            <div class="button-extend__icon">
-              <svg
-                class="icon-cross"
-                width="22"
-                height="22"
-                viewBox="0 0 22 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M15.5563 16.2637L4.94971 5.65714L5.65681 4.95003L16.2634 15.5566L15.5563 16.2637Z"
-                  fill="black"
-                />
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M4.95005 15.5566L15.5566 4.94995L16.2637 5.65706L5.65716 16.2637L4.95005 15.5566Z"
-                  fill="black"
-                />
-              </svg>
-            </div>
-          </router-link>
-        </div>
+         <div class="close">
+        <router-link :to="{name:'home'}" class="button-pill button-pill--icon m-medium">
+          <svg
+            data-v-4fdd230d
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon-cross"
+          >
+            <path
+              data-v-4fdd230d
+              d="M0.146484 9.14722L9.14722 0.146484L9.85433 0.853591L0.853591 9.85433L0.146484 9.14722Z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="black"
+            />
+            <path
+              data-v-4fdd230d
+              d="M0.853637 0.14712L9.85361 9.14706L9.1465 9.85417L0.146531 0.854228L0.853637 0.14712Z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              fill="black"
+            />
+          </svg>
+        </router-link>
+      </div>
         <div class="hero">
           <div
             class="hero__image"

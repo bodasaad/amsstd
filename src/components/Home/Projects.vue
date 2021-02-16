@@ -3,9 +3,9 @@
     <a class="enlarge button-pill" ref="button" @click="expand()">Projects</a>
     <div class="flex f-space-between column-head">
       <div class="items__title" :class="[{'flex': !activefilters}, { 'none': activefilters}]">
-        <span @click="expand()">Projects</span>
+        <span @click="expanded? shrink():expand()">Projects</span>
         <span>
-          <i class="fas fa-times" @click="shrink()"></i>
+          <i class="fas " :class="[{'fa-arrows-alt-h': !expanded}, { 'fa-times': expanded}]" @click="expanded? shrink():expand()"></i>
         </span>
       </div>
       <div class="filters" style="right: 124px;">
@@ -86,7 +86,8 @@ export default {
       left: null,
       right: null,
       activefilters: false,
-      allProjects: []
+      allProjects: [],
+      expanded: false
     };
   },
   components: { Project: Project },
@@ -106,6 +107,8 @@ export default {
   },
   methods: {
     shrink() {
+      this.expanded = false
+
       helpers.changePositions({
         one: { right: 66.6, left: 33.3 },
         two: { right: 33.3, left: 66.6 }
@@ -113,6 +116,7 @@ export default {
       helpers.shrink();
     },
     expand() {
+      this.expanded = true
       helpers.changePositions({
         one: { right: 95, left: 5 },
         two: { right: 5, left: 95 }

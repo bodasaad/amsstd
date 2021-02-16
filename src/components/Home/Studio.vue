@@ -3,9 +3,13 @@
     <a class="enlarge button-pill" ref="button" @click="expand()">Studio</a>
     <div class="flex f-space-between column-head">
       <div class="items__title">
-        <span @click="expand()">Studio</span>
+        <span @click="expanded? shrink():expand()">Studio</span>
         <span>
-          <i class="fas fa-times" @click="shrink()"></i>
+          <i
+            class="fas"
+            :class="[{'fa-arrows-alt-h': !expanded}, { 'fa-times': expanded}]"
+            @click="expanded? shrink():expand()"
+          ></i>
         </span>
       </div>
     </div>
@@ -33,7 +37,7 @@
         </div>
       </a>
       <br />
-      <router-link class="button-extend newsletter" :to="{name:'contacts'}" >
+      <router-link class="button-extend newsletter" :to="{name:'contacts'}">
         <div class="button-extend__text-wrapper">
           <div class="button-extend__text">Contact</div>
         </div>
@@ -103,7 +107,8 @@ export default {
   name: "Projetcs",
   data() {
     return {
-      visibilePortal: false
+      visibilePortal: false,
+      expanded:false
     };
   },
   // props: ["width", "height"],
@@ -127,6 +132,8 @@ export default {
       document.querySelector("body").classList.add("search-pane--show");
     },
     shrink() {
+      this.expanded = false;
+
       helpers.changePositions({
         one: { right: 66.6, left: 33.3 },
         two: { right: 33.3, left: 66.6 }
@@ -134,6 +141,8 @@ export default {
       helpers.shrink();
     },
     expand() {
+      this.expanded = true;
+
       helpers.changePositions({
         one: { right: 95, left: 5 },
         two: { right: 90, left: 10 }
