@@ -80,7 +80,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/js/expenses.c4746b82.js"
   },
   {
-    "revision": "9016fae57d16072396f779717156ecef",
+    "revision": "07308773d0d8373e2ab5ba9065137af7",
     "url": "/manifest.json"
   },
   {
