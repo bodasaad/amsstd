@@ -1,32 +1,38 @@
-importScripts("/precache-manifest.0256025ab18640d75a6284c3255c172a.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+/**
+ * Welcome to your Workbox-powered service worker!
+ *
+ * You'll need to register this file in your web app and you should
+ * disable HTTP caching for this file too.
+ * See https://goo.gl/nhQhGp
+ *
+ * The rest of the code is auto-generated. Please don't update this file
+ * directly; instead, make changes to your Workbox build configuration
+ * and re-run your build process.
+ * See https://goo.gl/2aRDsh
+ */
 
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
-if (workbox) {
-  console.log(`Workbox is loaded`);
+importScripts(
+  "/precache-manifest.9520011be59525383a7ab1d12274c04a.js"
+);
 
-  workbox.precaching.precacheAndRoute(self.__precacheManifest);
+workbox.core.setCacheNameDetails({prefix: "pwa-sample"});
 
-}
-else {
-  console.log(`Workbox didn't load`);
-}
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
 
-// const filesToCache = [
-//   '/',
-//   'src/assets/css/classes.css',
-//   './index.html',
+workbox.core.clientsClaim();
 
-// ];
+/**
+ * The workboxSW.precacheAndRoute() method efficiently caches and responds to
+ * requests for URLs in the manifest.
+ * See https://goo.gl/S9QRab
+ */
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-// const staticCacheName = 'pages-cache-v1';
-
-// self.addEventListener('install', event => {
-//   console.log('Attempting to install service worker and cache static assets');
-//   event.waitUntil(
-//     caches.open(staticCacheName)
-//       .then(cache => {
-//         return cache.addAll(filesToCache);
-//       })
-//   );
-// });
-
+workbox.routing.registerRoute(/^https:\/\/connpass.com\/api\/v1\/event\//, new workbox.strategies.NetworkFirst({ "cacheName":"api","fetchOptions":{"mode":"cors"},"matchOptions":{"ignoreSearch":true}, plugins: [new workbox.expiration.Plugin({ maxAgeSeconds: 86400, purgeOnQuotaError: false })] }), 'GET');
