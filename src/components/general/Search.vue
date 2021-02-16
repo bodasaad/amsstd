@@ -54,7 +54,7 @@ body .search-pane {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 10;
+  z-index: 999;
   -webkit-transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1);
   transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1);
   opacity: 0;

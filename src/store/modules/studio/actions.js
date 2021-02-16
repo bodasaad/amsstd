@@ -12,7 +12,7 @@ const checkAuth = (res, dispatch) => {
 const getAllArticles = async ({ commit, state, rootState, dispatch }) => {
   const res = await Studio.getAllArticles(rootState.url)
   checkAuth(res, dispatch)
-  !res.state && commit('msg', { msg: res.msg, type: 'warning' }, { root: true })
+  // !res.state && commit('msg', { msg: res.msg, type: 'warning' }, { root: true })
   res.state && commit('updateArticles', res.json.reverse())
   state.ready += 1
   return res.state ? true : false
@@ -21,7 +21,7 @@ const getAllArticles = async ({ commit, state, rootState, dispatch }) => {
 const getAllProjects = async ({ commit, state, rootState, dispatch }) => {
   const res = await Studio.getAllProjects(rootState.url)
   checkAuth(res, dispatch)
-  !res.state && commit('msg', { msg: res.msg, type: 'warning' }, { root: true })
+  // !res.state && commit('msg', { msg: res.msg, type: 'warning' }, { root: true })
   res.state && commit('updateProjects', res.json.reverse())
   state.ready += 1
   return res.state ? true : false

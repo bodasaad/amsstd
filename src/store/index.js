@@ -16,6 +16,7 @@ export default new Vuex.Store({
     categories: [],
     url: "https://ams-server.xyz",
     msg: null,
+    networkconnections: true,
     colWidth: 33.3,
     screenwidth: window.innerWidth,
     one: {
@@ -44,7 +45,13 @@ export default new Vuex.Store({
   },
 
   actions: {
+    async  checkConnection({ state }) {
 
+      const res = await fetch("http://info.cern.ch/")
+      console.log(res);
+
+      state.networkconnections = !state.networkconnections
+    },
     async  getCategories({ commit, rootState }) {
       const res = await Admin.getCategories(rootState.url)
       !res.state && commit('msg', { msg: res.msg, type: res.state ? 'success' : 'warning' })

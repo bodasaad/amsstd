@@ -1,13 +1,13 @@
 <template>
   <div>
-    <loadingCom v-if="enter"></loadingCom>
-    <div v-if="!enter" class="columns opacity-none">
-      <Articles ref="articles" :articles="articles" v-on:created="checkFiltertion"></Articles>
-      <Projects ref="projects" :projects="projects" v-on:created="checkFiltertion"></Projects>
+    <loadingCom v-if="ready != 2"></loadingCom>
+    <div class="columns opacity-none">
+      <Articles ref="articles" v-on:created="checkFiltertion"></Articles>
+      <Projects ref="projects"  v-on:created="checkFiltertion"></Projects>
       <Studio ref="studio"></Studio>
       <Rails :loading="loading" ref="rails" :refs="this.$refs"></Rails>
     </div>
-    <div class="columns-footer" v-if="!enter">
+    <div class="columns-footer">
       <div class="columns-footer__menu">
         <div class="columns-footer__menu-item" @click="activeColumn('one', $event)">
           <div class="button-pill" data-column="one">Blog</div>
@@ -55,30 +55,19 @@ export default {
     ...mapState(["one", "two", "colWidth"]),
     ...mapState("studio", ["articles", "projects", "ready"])
   },
- 
   mounted() {
-    if (this.ready == 2) {
-      this.start();
-    }
+    if (this.ready == 2) this.start();
     this.loading = false;
-
-    window.addEventListener("resize", () => {
-      this.windowWidth = window.innerWidth;
-    });
+    window.addEventListener(
+      "resize",
+      () => (this.windowWidth = window.innerWidth)
+    );
   },
-  async created() {
-    if (this.articles.length == 0) {
-      this.$store.dispatch({ type: "studio/getAllArticles" });
-    }
-    if (this.projects.length == 0) {
-      this.$store.dispatch({ type: "studio/getAllProjects" });
-    }
-    helpers.calcColumn();
-  },
-
+  async created() {},
   methods: {
     start() {
       helpers.shrink();
+      helpers.calcColumn();
       this.enter = false;
     },
     checkFiltertion() {
@@ -104,9 +93,6 @@ export default {
     }
   },
   watch: {
-    // "$route.params.type": function(id) {
-    //   console.log(v);
-    // },
     windowWidth() {
       helpers.calcColumn();
     },
@@ -118,14 +104,6 @@ export default {
       }
     }
   }
-  // beforeRouteLeave(to, from, next) {
-  //   this.$store.dispatch({ type: "calcColumns" });
-
-  //   this.$store.dispatch("shrink");
-
-  //   console.log("beforeRouteLeave: HOME");
-  //   setTimeout(() => next(), 1000);
-  // }
 };
 </script>
 

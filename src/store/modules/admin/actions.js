@@ -83,7 +83,7 @@ const deleteProject = async ({ commit, state, rootState }, { data }) => {
 const getCategories = async ({ commit, rootState }) => {
   const res = await Admin.getCategories(rootState.url)
   checkAuth(res, commit)
-  commit('msg', { msg: res.msg, type: res.state ? 'success' : 'warning' }, { root: true })
+  // commit('msg', { msg: res.msg, type: res.state ? 'success' : 'warning' }, { root: true })
   res.state && commit('updatecategories', res.json.categories)
   return res.state ? true : false
 };
