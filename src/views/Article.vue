@@ -255,8 +255,28 @@ export default {
             content: `${this.url}/${article.image}`
           },
           {
+            property: "og:image:secure_url",
+            content: `${this.url}/${article.image}`
+          },
+          {
+            property: "og:image:type",
+            content: `jpg`
+          },
+          {
+            property: "og:image:width",
+            content: `1200`
+          },
+          {
+            property: "og:image:height",
+            content: `628`
+          },
+          {
             property: "og:url",
             content: `${window.location.pathname}`
+          },
+          {
+            property: "og:type",
+            content: `website`
           }
         ]
       };

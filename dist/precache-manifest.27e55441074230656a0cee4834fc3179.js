@@ -44,7 +44,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/img/word.7c99b425.png"
   },
   {
-    "revision": "310c858a7ceba41255504240c3a93bac",
+    "revision": "17c6d3862a86b98b880f580838d2ac4a",
     "url": "/index.html"
   },
   {
