@@ -252,7 +252,11 @@ export default {
           },
           {
             property: "og:image",
-            content: ""
+            content: `${this.url}/${article.image}`
+          },
+          {
+            property: "og:url",
+            content: `${window.location.pathname}`
           }
         ]
       };

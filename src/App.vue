@@ -35,7 +35,6 @@
 </template>
 
 <script>
-
 window.$ = require("jquery");
 window.JQuery = require("jquery");
 import { mapState, mapActions } from "vuex";
@@ -79,18 +78,17 @@ export default {
           "Software company - website - web app - softwares - digital agency - amsstudio - ams studio - applications - articles - blog - software - websites company",
         vmid: "ogdesc"
       },
-      // {
-      //   name: "theme-color",
-      //   content: "#ff8429",
-      //   id: "theme-color"
-      // },
       {
         property: "og:title",
         content: "AMS STUDIO"
       },
       {
         property: "og:image",
-        content: ""
+        content: "https://i.ibb.co/SySVbCZ/Circle2.png"
+      },
+      {
+        property: "og:url",
+        content: "https://www.amsstudio.me"
       }
     ]
   },
