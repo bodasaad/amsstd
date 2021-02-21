@@ -82,6 +82,9 @@
       <div class="items">
         <Project v-for="project in allProjects" :key="project._id" :project="project"></Project>
         <!-- <h3 v-if="projects.length == 0">No projects yet..</h3> -->
+        <div v-if="allProjects.length == 0">
+          <img class="w-75 m-auto block" style="margin-top:15px" src="../../assets/images/noresult.svg" alt srcset />
+        </div>
       </div>
     </div>
   </div>

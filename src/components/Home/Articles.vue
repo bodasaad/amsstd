@@ -83,7 +83,9 @@
       <div class="items" v-if="allarticles.length > 0">
         <!-- <img id="loading" v-if="fetching" class="loading" src="@/assets/loading2.gif" /> -->
         <Article v-for="article in allarticles" :key="article._id" :article="article"></Article>
-        <h3 v-if="allarticles.length == 0">No articles yet..</h3>
+      </div>
+      <div v-if="allarticles.length == 0">
+        <img class="w-75 m-auto block" src="../../assets/images/noresult.svg" style="margin-top:15px" alt srcset />
       </div>
     </div>
   </div>
