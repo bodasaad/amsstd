@@ -13,6 +13,7 @@ module.exports = {
   },
   pwa: {
     workboxPluginMode: 'GenerateSW',
+    themeColor: '#ff9445',
     workboxOptions: {
       cacheId: 'pwa-sample',
       swDest: 'service-worker.js',
@@ -34,7 +35,9 @@ module.exports = {
             },
           }
         }
-      ]
+      ],
+      exclude: [/\.map$/, /_redirects/], //this fixed it.
+
     }
   }
 }
