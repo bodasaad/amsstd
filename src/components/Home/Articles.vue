@@ -1,5 +1,12 @@
 <template>
-  <div class="column" data-column="one" id="colOne" data-size="1" ref="articles">
+  <div
+    class="column"
+    data-column="one"
+    id="colOne"
+    data-size="1"
+    ref="articles"
+    :class="[{'loading': loading}]"
+  >
     <ItemLoading v-if="loading"></ItemLoading>
     <div class="reload" v-if="reload">
       <h1>Hmmm...</h1>
@@ -85,7 +92,13 @@
         <Article v-for="article in allarticles" :key="article._id" :article="article"></Article>
       </div>
       <div v-if="allarticles.length == 0">
-        <img class="w-75 m-auto block" src="../../assets/images/noresult.svg" style="margin-top:15px" alt srcset />
+        <img
+          class="w-75 m-auto block"
+          src="../../assets/images/noresult.svg"
+          style="margin-top:15px"
+          alt
+          srcset
+        />
       </div>
     </div>
   </div>

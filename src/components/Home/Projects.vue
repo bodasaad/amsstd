@@ -1,5 +1,11 @@
 <template>
-  <div data-column="two" data-size="1" class="column active" ref="projects">
+  <div
+    data-column="two"
+    data-size="1"
+    class="column active"
+    ref="projects"
+    :class="[{'loading': loading}]"
+  >
     <ItemLoading v-if="loading"></ItemLoading>
     <div class="reload" v-if="reload">
       <h1>Hmmm...</h1>
@@ -83,7 +89,13 @@
         <Project v-for="project in allProjects" :key="project._id" :project="project"></Project>
         <!-- <h3 v-if="projects.length == 0">No projects yet..</h3> -->
         <div v-if="allProjects.length == 0">
-          <img class="w-75 m-auto block" style="margin-top:15px" src="../../assets/images/noresult.svg" alt srcset />
+          <img
+            class="w-75 m-auto block"
+            style="margin-top:15px"
+            src="../../assets/images/noresult.svg"
+            alt
+            srcset
+          />
         </div>
       </div>
     </div>

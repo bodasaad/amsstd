@@ -178,6 +178,9 @@ body.search-pane--show .search-pane {
   right .1s cubic-bezier(0.55, 0, 0.1, 1); */
   will-change: opacity, filter;
 }
+.column.loading{
+  overflow: hidden !important;
+}
 .columns .column[data-column="one"] .logo,
 .columns .column[data-column="two"] .logo{
   display: none;

@@ -17,7 +17,13 @@
             <div class="m-r-3">
               <div class="form-control">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title" v-model="title" :class="{'required-input':alert}" />
+                <input
+                  type="text"
+                  name="title"
+                  id="title"
+                  v-model="title"
+                  :class="{'required-input':alert}"
+                />
               </div>
               <div class="form-control">
                 <label for="subtitle">Sub Title</label>
@@ -56,7 +62,7 @@
                 </select>
               </div>
               <div class="form-input">
-                <label for="tags">Article Tags:</label>
+                <label for="tags">Project Tags:</label>
                 <input
                   class="currentInput input"
                   id="tags"
@@ -110,7 +116,7 @@
             <button @click.prevent="uploadImage()" class="btn btn-info">Add</button>
             <div class="grid g-two">
               <div class="parent-card p-relative" v-for="c in content" :key="c.name">
-                <i class="fas fa-times close" @click="removeContent(c._id)"></i>
+                <i class="fas fa-times close" @click="removeContent(c.id)"></i>
                 <div v-if="c.image" class="p-relative w-50 block m-auto">
                   <i class="fas fa-times close font-s" @click="deleteImage(c.image)"></i>
                   <img :src="'https://ams-server.xyz' + c.image" alt class="w-100" />
@@ -184,7 +190,15 @@ export default {
       this.subtitle = project.subtitle;
       this.client = project.client;
       this.tags = project.tags;
-      this.content = project.content;
+      this.content = project.content.map(c => ({
+        id: c._id,
+        _id: c._id,
+        name: c.name,
+        text: c.text,
+        image: c.image
+      }));
+      console.log(this.content);
+
       this.brief = project.brief;
       this.demo = project.demo;
       this.category = project.category;
@@ -206,11 +220,9 @@ export default {
       this.tags = this.tags.filter(t => t != tag);
     },
     async addContent(img) {
-      console.log(this.contentText);
-
       if (this.contentText) {
         this.content.push({
-          _id: this.content.length + 1,
+          id: this.content.length + 1,
           text: this.contentText,
           name: this.contentName,
           image: img || ""
@@ -221,7 +233,7 @@ export default {
     async removeContent(id) {
       // let parsed = JSON.parse(JSON.stringify(this.content));
 
-      const item = this.content.find(c => c._id.toString() == id.toString());
+      const item = this.content.find(c => c.id.toString() == id.toString());
 
       if (item.image) this.deleteImage(item.image);
       this.content = this.content.filter(
@@ -254,6 +266,7 @@ export default {
           });
           const json = await res.json();
           this.addContent(json);
+          // this.addContent("");
         }
       }
     },
@@ -272,6 +285,8 @@ export default {
       if (!this.title || !this.subtitle || !this.brief) {
         return (this.alert = true);
       }
+      console.log(this.content);
+
       const data = new FormData();
       data.append("title", this.title);
       data.append("subtitle", this.subtitle);

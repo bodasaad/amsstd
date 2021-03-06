@@ -2,34 +2,34 @@
   <div>
     <div :class="{'loader-effect':loading}">
       <div v-if="!loading">
-         <div class="close">
-        <router-link :to="{name:'home'}" class="button-pill button-pill--icon m-medium">
-          <svg
-            data-v-4fdd230d
-            width="10"
-            height="10"
-            viewBox="0 0 10 10"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="icon-cross"
-          >
-            <path
+        <div class="close">
+          <router-link :to="{name:'home'}" class="button-pill button-pill--icon m-medium">
+            <svg
               data-v-4fdd230d
-              d="M0.146484 9.14722L9.14722 0.146484L9.85433 0.853591L0.853591 9.85433L0.146484 9.14722Z"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              fill="black"
-            />
-            <path
-              data-v-4fdd230d
-              d="M0.853637 0.14712L9.85361 9.14706L9.1465 9.85417L0.146531 0.854228L0.853637 0.14712Z"
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              fill="black"
-            />
-          </svg>
-        </router-link>
-      </div>
+              width="10"
+              height="10"
+              viewBox="0 0 10 10"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon-cross"
+            >
+              <path
+                data-v-4fdd230d
+                d="M0.146484 9.14722L9.14722 0.146484L9.85433 0.853591L0.853591 9.85433L0.146484 9.14722Z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                fill="black"
+              />
+              <path
+                data-v-4fdd230d
+                d="M0.853637 0.14712L9.85361 9.14706L9.1465 9.85417L0.146531 0.854228L0.853637 0.14712Z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                fill="black"
+              />
+            </svg>
+          </router-link>
+        </div>
         <div class="hero">
           <div
             class="hero__image"
@@ -196,8 +196,15 @@
             </div>
           </div>
           <div class="blocks line-background" data-background-color="white">
-            <div class="block block-text grid g-two" v-for="c in project.content" :key="c._id">
-              <div class="block-text__image">
+            <div
+              class="block block-text grid g-two"
+              v-for="(c , i) in project.content"
+              :key="c._id"
+            >
+              <div
+                class="block-text__image"
+                :style="[i === 0 ? {'order': '1'} : {'order': '2'}]"
+              >
                 <img
                   class="blur show"
                   :src="'https://ams-server.xyz' +  c.image"
@@ -207,7 +214,7 @@
                 />
                 <div class="gallery-icon"></div>
               </div>
-              <div class="block-text__text" data-footnotes>
+              <div class="block-text__text" data-footnotes :style="[i === 0 ? {'order': '2'} : {'order': '1'}]">
                 <p>{{c.text}}</p>
               </div>
             </div>
@@ -284,6 +291,7 @@ export default {
   background-position: 50%;
   background-attachment: fixed;
   will-change: opacity;
+  z-index: 3;
 }
 
 .hero__meta {
@@ -299,6 +307,7 @@ export default {
   letter-spacing: 1.2px;
   font-weight: 700;
   text-transform: uppercase;
+  z-index: 3;
 }
 
 .hero__meta .hero__title {
@@ -428,7 +437,7 @@ export default {
 }
 
 .blocks .block.block-text .block-text__text p {
-  margin-bottom: 24px;
+  margin: 24px;
 }
 .blocks .block.block-image .block-image__image img {
   display: block;
@@ -539,5 +548,9 @@ export default {
   .line-background:before {
     opacity: 0;
   }
+  
+.blocks .block.block-text .block-text__image{
+  order: 1 !important;
+}
 }
 </style>

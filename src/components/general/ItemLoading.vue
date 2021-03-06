@@ -49,6 +49,9 @@ export default {
   flex-direction: column;
   z-index: 9999;
 }
+.loading-item .logo{
+  position: fixed !important;
+}
 
 .loading-item-cell {
   margin-bottom: 30px;
