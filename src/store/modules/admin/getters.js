@@ -4,8 +4,12 @@ const projectById = (state) => (id) => {
 const articleById = (state) => (id) => {
     return state.allarticles.find(a => a._id.toString() == id.toString())
 };
+const categoryById = (state) => (id) => {
+    return state.allcategories.find(a => a._id.toString() == id.toString())
+};
 
 export default {
     projectById,
-    articleById
+    articleById,
+    categoryById
 };

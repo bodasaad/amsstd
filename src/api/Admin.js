@@ -26,10 +26,10 @@ export default class Admin {
 
 
     static async getCategories(url) { return await request(`${url}/admin/category/`, 'get', {}, true) }
-    static async editCategory(data, jwt, url) { return await request(`${url}/admin/category`, 'post', data, false, jwt) }
+    static async editCategory(data, id, jwt, url) { return await request(`${url}/admin/category/${id}`, 'put', data, false, jwt) }
     static async addCategory(data, jwt, url) { return await request(`${url}/admin/category`, 'post', data, false, jwt) }
     static async deleteCategory(id, jwt, url) { return await request(`${url}/admin/category/${id}`, 'delete', {}, false, jwt) }
 
 
-    
+
 }

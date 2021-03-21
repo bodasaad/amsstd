@@ -1,17 +1,24 @@
 <template>
   <div>
+    <div class="reload" v-if="reload">
+      <h1>Hmmm...</h1>
+      <p>It seems you lost your connection, please try again.</p>
+      <button class="button-pill bg-main" @click="start()">Reload</button>
+    </div>
     <form
-      style="background-color:transparent;"
+      style="background-color: transparent"
       class="parent-card form"
       method="POST"
       enctype="multipart/form-data"
     >
-      <div :class="{'loader-effect':loading}">
+      <div :class="{ 'loader-effect': loading }">
         <div class="form_inputs">
           <div class="flex f-space-between">
             <h2 v-if="!edit">Create Project</h2>
             <h2 v-if="edit">Edit Project</h2>
-            <router-link class="btn" :to="{name:'allprojects'}">All Project</router-link>
+            <router-link class="btn" :to="{ name: 'allprojects' }"
+              >All Project</router-link
+            >
           </div>
           <div class="p-medium grid g-two">
             <div class="m-r-3">
@@ -22,7 +29,7 @@
                   name="title"
                   id="title"
                   v-model="title"
-                  :class="{'required-input':alert}"
+                  :class="{ 'required-input': alert }"
                 />
               </div>
               <div class="form-control">
@@ -32,7 +39,7 @@
                   name="subtitle"
                   id="subtitle"
                   v-model="subtitle"
-                  :class="{'required-input':alert}"
+                  :class="{ 'required-input': alert }"
                 />
               </div>
               <div class="form-control">
@@ -47,7 +54,12 @@
             <div class="m-l-3">
               <div class="form-control">
                 <label for="itemImg">image</label>
-                <input type="file" name="image" id="itemImg" @change="previewFiles" />
+                <input
+                  type="file"
+                  name="image"
+                  id="itemImg"
+                  @change="previewFiles"
+                />
               </div>
               <div class="form-control grid">
                 <label for="category">category</label>
@@ -58,7 +70,9 @@
                     :data-val="t.name"
                     :value="t.name"
                     class="options"
-                  >{{t.name}}</option>
+                  >
+                    {{ t.name }}
+                  </option>
                 </select>
               </div>
               <div class="form-input">
@@ -77,7 +91,7 @@
                     :data-val="t"
                     class="options btn btn-info tag-span"
                   >
-                    {{t}}
+                    {{ t }}
                     <i class="fas fa-times" @click="removetag(t)"></i>
                   </li>
                 </div>
@@ -87,14 +101,14 @@
           <div class="form-control">
             <label for="brief">Brief</label>
             <textarea
-              style="min-height:100px"
+              style="min-height: 100px"
               type="text"
               name="brief"
               id="brief"
               v-model="brief"
               rows="40"
               cols="50"
-              :class="{'required-input':alert}"
+              :class="{ 'required-input': alert }"
             ></textarea>
           </div>
           <div class="bg-darkgray p-3">
@@ -113,15 +127,28 @@
               <label for="contentImg">image</label>
               <input type="file" name="image" id="contentImg" />
             </div>
-            <button @click.prevent="uploadImage()" class="btn btn-info">Add</button>
+            <button @click.prevent="uploadImage()" class="btn btn-info">
+              Add
+            </button>
             <div class="grid g-two">
-              <div class="parent-card p-relative" v-for="c in content" :key="c.name">
+              <div
+                class="parent-card p-relative"
+                v-for="c in content"
+                :key="c.name"
+              >
                 <i class="fas fa-times close" @click="removeContent(c.id)"></i>
                 <div v-if="c.image" class="p-relative w-50 block m-auto">
-                  <i class="fas fa-times close font-s" @click="deleteImage(c.image)"></i>
-                  <img :src="'https://ams-server.xyz' + c.image" alt class="w-100" />
+                  <i
+                    class="fas fa-times close font-s"
+                    @click="deleteImage(c.image)"
+                  ></i>
+                  <img
+                    :src="'https://ams-server.xyz' + c.image"
+                    alt
+                    class="w-100"
+                  />
                 </div>
-                <p class>{{c.text}}</p>
+                <p class>{{ c.text }}</p>
               </div>
             </div>
           </div>
@@ -131,14 +158,18 @@
             class="btn btn-success"
             type="button"
             v-if="!edit"
-          >Save</button>
+          >
+            Save
+          </button>
           <button
             id="addNewitem"
             @click.prevent="createProject()"
             class="btn btn-success"
             type="button"
             v-if="edit"
-          >Update</button>
+          >
+            Update
+          </button>
         </div>
       </div>
       <!--Image Here-->
@@ -152,6 +183,7 @@ export default {
   name: "createProject",
   data() {
     return {
+      reload: false,
       loading: false,
       alert: false,
       edit: false,
@@ -167,45 +199,48 @@ export default {
       content: [],
       contentimgs: [],
       contentText: null,
-      contentName: null
+      contentName: null,
     };
   },
   computed: {
     ...mapState(["categories", "url"]),
     ...mapState("admin", ["allprojects"]),
-    ...mapGetters("admin", ["projectById"])
+    ...mapGetters("admin", ["projectById"]),
   },
   async created() {
-    const id = this.$route.params.id;
-    if (id) {
-      this.edit = true;
-      if (this.allprojects.length == 0) {
-        this.loading = true;
-        await this.$store.dispatch("admin/getProjects");
-        this.loading = false;
-      }
-      const project = this.projectById(id);
-
-      this.title = project.title;
-      this.subtitle = project.subtitle;
-      this.client = project.client;
-      this.tags = project.tags;
-      this.content = project.content.map(c => ({
-        id: c._id,
-        _id: c._id,
-        name: c.name,
-        text: c.text,
-        image: c.image
-      }));
-      console.log(this.content);
-
-      this.brief = project.brief;
-      this.demo = project.demo;
-      this.category = project.category;
-      project && (this.loading = false);
-    }
+    this.start();
   },
   methods: {
+    async start() {
+      const id = this.$route.params.id;
+      if (id) {
+        this.edit = true;
+        if (this.allprojects.length == 0) {
+          this.loading = true;
+          await this.$store.dispatch("admin/getProjects");
+          this.loading = false;
+        }
+        const project = this.projectById(id);
+        if (!project) {
+          return (this.reload = true);
+        }
+        this.title = project.title;
+        this.subtitle = project.subtitle;
+        this.client = project.client;
+        this.tags = project.tags;
+        this.content = project.content.map((c) => ({
+          id: c._id,
+          _id: c._id,
+          name: c.name,
+          text: c.text,
+          image: c.image,
+        }));
+        this.brief = project.brief;
+        this.demo = project.demo;
+        this.category = project.category;
+        project && (this.loading = false);
+      }
+    },
     getTag(e) {
       var keyBoardKey = e.keyCode || e.which;
       if (keyBoardKey === 13) {
@@ -217,7 +252,7 @@ export default {
       }
     },
     removetag(tag) {
-      this.tags = this.tags.filter(t => t != tag);
+      this.tags = this.tags.filter((t) => t != tag);
     },
     async addContent(img) {
       if (this.contentText) {
@@ -225,7 +260,7 @@ export default {
           id: this.content.length + 1,
           text: this.contentText,
           name: this.contentName,
-          image: img || ""
+          image: img || "",
         });
       }
       this.contentText = "";
@@ -233,11 +268,11 @@ export default {
     async removeContent(id) {
       // let parsed = JSON.parse(JSON.stringify(this.content));
 
-      const item = this.content.find(c => c.id.toString() == id.toString());
+      const item = this.content.find((c) => c.id.toString() == id.toString());
 
       if (item.image) this.deleteImage(item.image);
       this.content = this.content.filter(
-        c => c._id.toString() !== id.toString()
+        (c) => c._id.toString() !== id.toString()
       );
       // console.log(this.content);
     },
@@ -262,7 +297,7 @@ export default {
           //upload image to server
           const res = await fetch("https://ams-server.xyz/admin/media", {
             method: "Post",
-            body: form
+            body: form,
           });
           const json = await res.json();
           this.addContent(json);
@@ -275,9 +310,9 @@ export default {
         method: "Put",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name: name })
+        body: JSON.stringify({ name: name }),
       });
       // const json = await res.json();
     },
@@ -285,7 +320,6 @@ export default {
       if (!this.title || !this.subtitle || !this.brief) {
         return (this.alert = true);
       }
-      console.log(this.content);
 
       const data = new FormData();
       data.append("title", this.title);
@@ -304,15 +338,20 @@ export default {
         await this.$store.dispatch({
           type: "admin/editProject",
           data,
-          id
+          id,
         });
       } else {
         await this.$store.dispatch({ type: "admin/addProject", data });
       }
       this.loading = false;
-    }
+    },
   },
-  watch: {}
+  watch: {
+    category: function (val) {
+      console.log(this);
+      const exist = this.categories.find((c) => c.name == val);
+    },
+  },
 };
 </script>
 

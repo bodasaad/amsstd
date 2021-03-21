@@ -1,6 +1,6 @@
 <template>
   <form
-    style="background-color:transparent;"
+    style="background-color: transparent"
     class="parent-card form"
     method="POST"
     enctype="multipart/form-data"
@@ -29,7 +29,7 @@
                 :data-val="t"
                 class="options btn btn-info btn-small tag-span"
               >
-                {{t}}
+                {{ t }}
                 <i class="fas fa-times" @click="removetag(t)"></i>
               </li>
             </div>
@@ -40,7 +40,9 @@
           @click.prevent="createCategory()"
           class="btn btn-success"
           type="button"
-        >Save</button>
+        >
+          Save
+        </button>
       </div>
     </div>
     <!--Image Here-->
@@ -48,7 +50,7 @@
 </template>
 
 <script>
-import { mapGetters,  mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   name: "createCategory",
@@ -56,24 +58,24 @@ export default {
     return {
       edit: false,
       name: null,
-      subcategories: []
+      subcategories: [],
     };
   },
   computed: {
     ...mapState("admin", ["allcategories"]),
-    ...mapGetters("admin", ["categoryById"])
+    ...mapGetters("admin", ["categoryById"]),
   },
   async created() {
     const id = this.$route.params.id;
     if (id) {
       this.edit = true;
       if (this.allcategories.length == 0) {
-        await this.$store.dispatch("admin/getCategory");
+        await this.$store.dispatch("admin/getCategories");
       }
       const category = this.categoryById(id);
+      console.log(category.subCategory);
       this.name = category.name;
-      this.subcategories = category.subcategories;
-
+      this.subcategories = category.subCategory || [];
       return category && (this.loading = false);
     }
   },
@@ -91,7 +93,7 @@ export default {
       }
     },
     removetag(tag) {
-      this.subcategories = this.subcategories.filter(t => t != tag);
+      this.subcategories = this.subcategories.filter((t) => t != tag);
     },
 
     createCategory() {
@@ -104,9 +106,9 @@ export default {
       } else {
         this.$store.dispatch({ type: "admin/addCategory", data });
       }
-    }
+    },
   },
-  watch: {}
+  watch: {},
 };
 </script>
 

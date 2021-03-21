@@ -1,9 +1,19 @@
 <template>
   <div>
-    <div :class="{'loader-effect':loading}">
+    <div class="reload" v-if="reload">
+      <h1>Hmmm...</h1>
+      <p>It seems you lost your connection, please try again.</p>
+      <button class="button-pill bg-main" @click="getProject($route.params.id)">
+        Reload
+      </button>
+    </div>
+    <div :class="{ 'loader-effect': loading }">
       <div v-if="!loading">
         <div class="close">
-          <router-link :to="{name:'home'}" class="button-pill button-pill--icon m-medium">
+          <router-link
+            :to="{ name: 'home' }"
+            class="button-pill button-pill--icon m-medium"
+          >
             <svg
               data-v-4fdd230d
               width="10"
@@ -33,10 +43,12 @@
         <div class="hero">
           <div
             class="hero__image"
-            :style=" {'background-image': 'url('+ url +'/'+ project.image + ')'}"
+            :style="{
+              'background-image': 'url(' + url + '/' + project.image + ')',
+            }"
           ></div>
           <div id="project" class="hero__meta">
-            <div class="hero__title">{{project.title}}</div>
+            <div class="hero__title">{{ project.title }}</div>
 
             <a class="hero__arrow hide" href="#project">
               <svg
@@ -56,7 +68,7 @@
         </div>
         <div class="background background-white">
           <div class="meta line-background" data-background-color="white">
-            <h2 class="meta__subtitle">{{project.subtitle}}</h2>
+            <h2 class="meta__subtitle">{{ project.subtitle }}</h2>
 
             <div class="meta__share">
               <a
@@ -158,9 +170,13 @@
             </div>
             <div class="meta__tags">
               <router-link
-                :to="{name:'home',  params:{ category:project.category, type:'project' }}"
+                :to="{
+                  name: 'home',
+                  params: { category: project.category.name, type: 'project' },
+                }"
                 class="button-pill"
-              >{{project.category}}</router-link>
+                >{{ project.category.name }}</router-link
+              >
             </div>
             <!-- <div class="meta__tags">
               <a
@@ -173,7 +189,7 @@
             <div class="meta__attributes">
               <div class="attribute">
                 <div class="attribute__title">Client</div>
-                <div class="attribute__text">{{project.client}}</div>
+                <div class="attribute__text">{{ project.client }}</div>
               </div>
               <div class="attribute">
                 <div class="attribute__title">Location</div>
@@ -192,30 +208,34 @@
               </div>
             </div>
             <div class="meta__intro-text">
-              <p>{{project.brief}}</p>
+              <p>{{ project.brief }}</p>
             </div>
           </div>
           <div class="blocks line-background" data-background-color="white">
             <div
               class="block block-text grid g-two"
-              v-for="(c , i) in project.content"
+              v-for="(c, i) in project.content"
               :key="c._id"
             >
               <div
                 class="block-text__image"
-                :style="[i === 0 ? {'order': '1'} : {'order': '2'}]"
+                :style="[i === 0 ? { order: '1' } : { order: '2' }]"
               >
                 <img
                   class="blur show"
-                  :src="'https://ams-server.xyz' +  c.image"
+                  :src="'https://ams-server.xyz' + c.image"
                   alt
                   data-gallery-image="https://www.carr.net.au/wp-2020/wp-content/uploads/2020/09/carr_nortonroseVIC-248-LR.jpg"
                   data-gallery-caption
                 />
                 <div class="gallery-icon"></div>
               </div>
-              <div class="block-text__text" data-footnotes :style="[i === 0 ? {'order': '2'} : {'order': '1'}]">
-                <p>{{c.text}}</p>
+              <div
+                class="block-text__text"
+                data-footnotes
+                :style="[i === 0 ? { order: '2' } : { order: '1' }]"
+              >
+                <p>{{ c.text }}</p>
               </div>
             </div>
           </div>
@@ -236,7 +256,8 @@ export default {
     return {
       isFollowed: false,
       loading: true,
-      project: null
+      project: null,
+      reload: false,
     };
   },
   components: {
@@ -245,26 +266,27 @@ export default {
   computed: {
     ...mapState(["url"]),
     ...mapState("studio", ["projects"]),
-    ...mapGetters("studio", ["projectById"])
+    ...mapGetters("studio", ["projectById"]),
   },
   created() {
     return this.getProject(this.$route.params.id);
   },
   methods: {
     async getProject(id) {
+      this.reload = false;
       if (this.projects.length == 0) {
         await this.$store.dispatch("studio/getAllProjects");
       }
       this.project = await this.projectById(id);
-
+      if (!this.project) return (this.reload = true);
       this.project && (this.loading = false);
-    }
+    },
   },
   watch: {
-    "$route.params.id": function(id) {
+    "$route.params.id": function (id) {
       if (id) this.getProject(id);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -445,7 +467,8 @@ export default {
 }
 .blocks .block.block-text .block-text__image img {
   display: block;
-  width: 100%;
+  width: 50%;
+  margin: auto;
 }
 
 .line-background:before {
@@ -495,7 +518,7 @@ export default {
     grid-template-columns: 1fr;
   }
   .hero {
-    height: 70vh;
+    height: 30vh;
   }
   .hero .hero__image {
     background-attachment: scroll;
@@ -510,6 +533,10 @@ export default {
     padding-top: 20px;
     padding-right: 16px;
     padding-bottom: 28px;
+  }
+  .blocks .block.block-text .block-text__image img{
+    width: 70%;
+    margin: auto;
   }
   .meta .meta__share {
     position: static;
@@ -548,9 +575,9 @@ export default {
   .line-background:before {
     opacity: 0;
   }
-  
-.blocks .block.block-text .block-text__image{
-  order: 1 !important;
-}
+
+  .blocks .block.block-text .block-text__image {
+    order: 1 !important;
+  }
 }
 </style>

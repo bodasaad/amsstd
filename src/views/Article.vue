@@ -1,13 +1,23 @@
 <template>
   <div>
+    <div class="reload" v-if="reload">
+      <h1>Hmmm...</h1>
+      <p>It seems you lost your connection, please try again.</p>
+      <button class="button-pill bg-main" @click="getArticle($route.params.id)">
+        Reload
+      </button>
+    </div>
     <FormPopup :startAuth="startAuth" v-on:close="closeAuthForm"></FormPopup>
-    <div id="single-post" :class="{'loader-effect':loading}">
+    <div id="single-post" :class="{ 'loader-effect': loading }">
       <!-- <div class="pyro">
         <div class="before"></div>
         <div class="after"></div>
       </div>-->
       <div class="close">
-        <router-link :to="{name:'home'}" class="button-pill button-pill--icon m-medium">
+        <router-link
+          :to="{ name: 'home' }"
+          class="button-pill button-pill--icon m-medium"
+        >
           <svg
             data-v-4fdd230d
             width="10"
@@ -37,19 +47,27 @@
       <div v-if="!loading">
         <div class="items__item">
           <div class="items__item-title">
-            <span class>{{article.title}}</span>
+            <span class>{{ article.title }}</span>
           </div>
           <div class="meta__tags">
             <router-link
-              :to="{name:'home',  params:{ category:article.category}, query: { type: 'article' }}"
+              :to="{
+                name: 'home',
+                params: { category: article.category.name },
+                query: { type: 'article' },
+              }"
               class="button-pill"
-            >{{article.category}}</router-link>
+              >{{ article.category.name }}</router-link
+            >
           </div>
           <div class="meta__share">
             <a
               class="button-extend facebook"
               target="_blank"
-              :href="'https://www.facebook.com/sharer.php?u=https://amsstudio.me/articles/' + article._id"
+              :href="
+                'https://www.facebook.com/sharer.php?u=https://amsstudio.me/articles/' +
+                article._id
+              "
             >
               <div class="button-extend__text-wrapper">
                 <div class="button-extend__text">Share</div>
@@ -143,41 +161,44 @@
               </div>
             </a>
           </div>
-          <div class="items__item-date">Posted At: {{article.date}}</div>
+          <div class="items__item-date">Posted At: {{ article.date }}</div>
 
           <div class="items__item-image">
-            <img :src="this.url +'/'+  article.image" alt />
+            <img :src="this.url + '/' + article.image" alt />
           </div>
           <div id="reacts">
             <ul>
-              <li @click="react(article._id ,'highfive', $event)">
+              <li @click="react(article._id, 'highfive', $event)">
                 <div class="before"></div>
                 <div class="after"></div>
                 <img src="@/assets/icons/high-five.png" alt />
-                <span>{{article.reactions.highfive.counter}}</span>
+                <span>{{ article.reactions.highfive.counter }}</span>
               </li>
-              <li @click="react(article._id ,'like', $event)">
+              <li @click="react(article._id, 'like', $event)">
                 <div class="before"></div>
                 <div class="after"></div>
                 <img src="@/assets/icons/thumbs-up.png" alt />
-                <span>{{article.reactions.like.counter}}</span>
+                <span>{{ article.reactions.like.counter }}</span>
               </li>
-              <li @click="react(article._id ,'dislike', $event)">
+              <li @click="react(article._id, 'dislike', $event)">
                 <div class="before"></div>
                 <div class="after"></div>
                 <img src="@/assets/icons/thumbs-down.png" alt />
-                <span>{{article.reactions.dislike.counter}}</span>
+                <span>{{ article.reactions.dislike.counter }}</span>
               </li>
             </ul>
           </div>
           <div class="ql-snow">
-            <div class="items__item-content ql-editor" v-html="article.content"></div>
+            <div
+              class="items__item-content ql-editor"
+              v-html="article.content"
+            ></div>
           </div>
         </div>
       </div>
     </div>
     <div class="column articles">
-      <router-link :to="{name:'home'}">
+      <router-link :to="{ name: 'home' }">
         <div class="items__title column-head">
           <span>Articles</span>
           <span>
@@ -189,7 +210,7 @@
         v-for="article in articles"
         :key="article._id"
         :article="article"
-        :class="{'loader-effect':loading}"
+        :class="{ 'loader-effect': loading }"
       ></Article>
       <h3 v-if="articles.length == 0">No articles yet..</h3>
     </div>
@@ -214,17 +235,18 @@ export default {
       isFollowed: false,
       loading: true,
       article: null,
-      startAuth: false
+      startAuth: false,
+      reload: false,
     };
   },
   components: {
     Article: Article,
-    FormPopup: FormPopup
+    FormPopup: FormPopup,
   },
   computed: {
     ...mapState(["url"]),
     ...mapState("studio", ["articles", "isAuth"]),
-    ...mapGetters("studio", ["articleById"])
+    ...mapGetters("studio", ["articleById"]),
   },
   created() {
     this.getArticle(this.$route.params.id);
@@ -239,59 +261,61 @@ export default {
           {
             name: "description",
             content: article.site_description,
-            vmid: "desc"
+            vmid: "desc",
           },
           {
             name: "og:description	",
             content: article.site_description,
-            vmid: "ogdesc"
+            vmid: "ogdesc",
           },
           {
             property: "og:title",
-            content: article.title
+            content: article.title,
           },
           {
             property: "og:image",
-            content: `${this.url}/${article.image}`
+            content: `${this.url}/${article.image}`,
           },
           {
             property: "og:image:secure_url",
-            content: `${this.url}/${article.image}`
+            content: `${this.url}/${article.image}`,
           },
           {
             property: "og:image:type",
-            content: `jpg`
+            content: `jpg`,
           },
           {
             property: "og:image:width",
-            content: `1200`
+            content: `1200`,
           },
           {
             property: "og:image:height",
-            content: `628`
+            content: `628`,
           },
           {
             property: "og:url",
-            content: `${window.location.pathname}`
+            content: `${window.location.pathname}`,
           },
           {
             property: "og:type",
-            content: `website`
-          }
-        ]
+            content: `website`,
+          },
+        ],
       };
     }
   },
-  
+
   methods: {
     async getArticle(id) {
+      this.reload = false;
+
       if (this.articles.length == 0) {
         await this.$store.dispatch("studio/getAllArticles");
       }
       this.article = this.articleById(id);
+      if (!this.article) return (this.reload = true);
       var self = this;
       self.$emit("updateHead");
-
       this.article && (this.loading = false);
       this.newview(id);
     },
@@ -303,16 +327,14 @@ export default {
       if (this.isAuth) {
         const res = await this.$store.dispatch("studio/react", {
           id: id,
-          reaction: reaction
+          reaction: reaction,
         });
 
         if (res.code !== 401) {
           if ($(e.target).is("li")) {
             $(e.target).addClass("active");
           } else {
-            $(e.target)
-              .parents("li")
-              .addClass("active");
+            $(e.target).parents("li").addClass("active");
           }
 
           return setTimeout(() => {
@@ -327,18 +349,18 @@ export default {
     },
     closeAuthForm() {
       this.startAuth = false;
-    }
+    },
   },
   watch: {
-    "$route.params.id": function(id) {
+    "$route.params.id": function (id) {
       this.getArticle(id);
     },
     isAuth(val) {
       if (val) {
         return;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
