@@ -47,7 +47,7 @@
       <div v-if="!loading">
         <div class="items__item">
           <div class="items__item-title">
-            <span class>{{ article.title }}</span>
+            <h1 class>{{ article.title }}</h1>
           </div>
           <div class="meta__tags">
             <router-link
@@ -366,7 +366,7 @@ export default {
 
 <style scoped>
 .items__item-title {
-  font-size: 50px;
+  font-size: 30px;
   padding: 160px 100px 106px 16px;
 }
 .items__item-date {

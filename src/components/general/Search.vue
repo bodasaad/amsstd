@@ -3,7 +3,7 @@
     <div class="search__input">
       <input name="search" type="text" placeholder="What are you looking for?" />
       <div class="search__close" @click="close()">
-        <a class="button-extend">
+        <button class="button-extend">
           <div class="button-extend__text-wrapper">
             <div class="button-extend__text">Close</div>
           </div>
@@ -30,7 +30,7 @@
               />
             </svg>
           </div>
-        </a>
+        </button>
       </div>
     </div>
     <div class="search__results"></div>

@@ -301,7 +301,7 @@ export default {
 .hero {
   position: relative;
   height: 100vh;
-  background-color: #000;
+  background-color: #fff;
 }
 .hero .hero__image {
   position: absolute;
@@ -309,9 +309,10 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  background-size: cover;
+  background-size: contain;
   background-position: 50%;
   background-attachment: fixed;
+  background-repeat: no-repeat;
   will-change: opacity;
   z-index: 3;
 }

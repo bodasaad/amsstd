@@ -69,13 +69,19 @@ export default {
       {
         name: "description",
         content:
-          "Software company - website - web app - softwares - digital agency - amsstudio - ams studio - applications - articles - blog - software - websites company",
+          "Software company  website  web app  softwares  digital agency  amsstudio amsstudio.me  ams studio  applications  articles  blog  software  websites company community educational javascript web development node.js web designing developing css js apps web apps",
+        vmid: "desc"
+      },
+      {
+        name: "Keywords",
+        content:
+          "Software company  website  web app  softwares  digital agency  amsstudio amsstudio.me  ams studio  applications  articles  blog  software  websites company community educational javascript web development node.js web designing developing css js apps web apps",
         vmid: "desc"
       },
       {
         name: "og:description	",
         content:
-          "Software company - website - web app - softwares - digital agency - amsstudio - ams studio - applications - articles - blog - software - websites company",
+          "Software company  website  web app  softwares  digital agency  amsstudio amsstudio.me  ams studio  applications  articles  blog  software  websites company community educational javascript web development node.js web designing developing css js apps web apps",
         vmid: "ogdesc"
       },
       {

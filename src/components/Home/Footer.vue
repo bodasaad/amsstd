@@ -1,10 +1,10 @@
 <template>
   <div class="footer-meta">
     <div class>
-      <a class="button-pill button-pill--icon" href="https://www.facebook.com/AMSTUDIO.E" target="_blank">
+      <a class="button-pill button-pill--icon" href="https://www.facebook.com/AMSTUDIO.E"  rel="noreferrer" target="_blank">
         <i class="fab fa-facebook-f"></i>
       </a>
-      <a class="button-pill button-pill--icon" href="https://www.instagram.com/amstudio.e/" target="_blank">
+      <a class="button-pill button-pill--icon" href="https://www.instagram.com/amstudio.e/" rel="noreferrer" target="_blank">
         <i class="fab fa-instagram"></i>
       </a>
       <router-link class="button-pill button-pill--icon" :to="{name:'contacts'}">Get In Touch</router-link>
@@ -47,10 +47,11 @@ export default {
   margin-right: 5px;
   width: unset !important;
   min-width: 32px;
+  color: #000;
 }
 .footer-meta .button-pill:last-child {
   background-color: var(--main-color);
-  color: #fff;
+  color: #000;
   padding: 0 4px;
 }
 
