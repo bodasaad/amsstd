@@ -1,6 +1,6 @@
 <template>
   <form
-    style="background-color:transparent;"
+    style="background-color: transparent"
     class="parent-card form"
     method="POST"
     enctype="multipart/form-data"
@@ -16,11 +16,25 @@
           </div>
           <div class="form-control">
             <label for="site_description">Site Description</label>
-            <input type="text" name="site_description" id="site_description" v-model="site_description" />
+            <input
+              type="text"
+              name="site_description"
+              id="site_description"
+              v-model="site_description"
+            />
+          </div>
+          <div class="form-control">
+            <input type="checkbox" name="active" id="active" v-model="active" />
+            <label for="active">{{ active ? "Active" : "Not Active" }}</label>
           </div>
           <div class="form-control">
             <label for="image">image</label>
-            <input type="file" name="image" id="itemImg" @change="previewFiles" />
+            <input
+              type="file"
+              name="image"
+              id="itemImg"
+              @change="previewFiles"
+            />
           </div>
           <div class="form-control grid">
             <label for="category">category</label>
@@ -32,7 +46,9 @@
                 :data-val="t.name"
                 :value="t.name"
                 class="options"
-              >{{t.name}}</option>
+              >
+                {{ t.name }}
+              </option>
             </select>
           </div>
           <div class="form-input">
@@ -45,8 +61,13 @@
               @keyup="getTag($event)"
             />
             <div class="tags flex">
-              <li v-for="t in tags" :key="t" :data-val="t" class="options btn btn-info tag-span">
-                {{t}}
+              <li
+                v-for="t in tags"
+                :key="t"
+                :data-val="t"
+                class="options btn btn-info tag-span"
+              >
+                {{ t }}
                 <i class="fas fa-times" @click="removetag(t)"></i>
               </li>
             </div>
@@ -60,7 +81,12 @@
           @focus="onEditorFocus($event)"
           @ready="onEditorReady($event)"
         ></quill-editor>
-        <input type="file" id="getFile" @change="uploadImage($event)" class="none" />
+        <input
+          type="file"
+          id="getFile"
+          @change="uploadImage($event)"
+          class="none"
+        />
 
         <!-- <quill v-model="content" :config="config" :options="editorOption"></quill> -->
         <button
@@ -69,14 +95,18 @@
           @click.prevent="createArticle()"
           class="btn btn-success"
           type="button"
-        >Save</button>
+        >
+          Save
+        </button>
         <button
           v-if="edit"
           id="addNewitem"
           @click.prevent="createArticle()"
           class="btn btn-success"
           type="button"
-        >Update</button>
+        >
+          Update
+        </button>
       </div>
     </div>
     <!--Image Here-->
@@ -92,16 +122,17 @@ export default {
   data() {
     return {
       edit: false,
+      active: true,
       title: null,
       category: "",
       image: "",
-      site_description:"",
+      site_description: "",
       tags: [],
       content: "<p>example content</p>",
       editorOption: {
         modules: {
           syntax: {
-            highlight: text => hljs.highlightAuto(text).value
+            highlight: (text) => hljs.highlightAuto(text).value,
           },
 
           toolbar: {
@@ -123,25 +154,25 @@ export default {
               [{ align: [] }],
 
               ["clean"],
-              ["link", "image", "emoji"]
+              ["link", "image", "emoji"],
             ],
             handlers: {
-              image: function() {
+              image: function () {
                 document.getElementById("getFile").click();
-              }
-            }
-          }
-        }
-      }
+              },
+            },
+          },
+        },
+      },
     };
   },
   components: {
-    quillEditor
+    quillEditor,
   },
   computed: {
     ...mapState(["categories"]),
     ...mapState("admin", ["allarticles"]),
-    ...mapGetters("admin", ["articleById"])
+    ...mapGetters("admin", ["articleById"]),
   },
   created() {
     const id = this.$route.params.id;
@@ -169,6 +200,7 @@ export default {
       }
       const article = this.articleById(id);
       this.title = article.title;
+      this.active = article.active;
       this.tags = article.tags;
       this.site_description = article.site_description;
       this.category = article.category;
@@ -183,7 +215,7 @@ export default {
       //upload image to server
       const res = await fetch("https://ams-server.xyz/admin/media", {
         method: "Post",
-        body: form
+        body: form,
       });
       const json = await res.json();
       if (res.status === 200 || res.status === 201) {
@@ -211,7 +243,7 @@ export default {
       }
     },
     removetag(tag) {
-      this.tags = this.tags.filter(t => t != tag);
+      this.tags = this.tags.filter((t) => t != tag);
     },
     previewFiles(e) {
       var file = e.target.files[0];
@@ -229,6 +261,7 @@ export default {
       const data = new FormData();
       // data.append("delta", JSON.stringify(this.content));
       data.append("content", this.content);
+      data.append("active", this.active);
       data.append("tags", JSON.stringify(this.tags));
       data.append("title", this.title);
       data.append("category", this.category);
@@ -240,7 +273,7 @@ export default {
         res = await this.$store.dispatch({
           type: "admin/editArticle",
           data,
-          id
+          id,
         });
       } else {
         res = await this.$store.dispatch({ type: "admin/addArticle", data });
@@ -249,12 +282,12 @@ export default {
         this.content = "";
         this.title = "";
         this.tags = [];
-        this.site_description = '';
+        this.site_description = "";
         this.image = "";
       }
-    }
+    },
   },
-  watch: {}
+  watch: {},
 };
 </script>
 

@@ -84,6 +84,11 @@
   padding: 0 var(--m-padding);
 }
 
+.form input[type="checkbox"]{
+  width: unset;
+  height: unset;
+  display: unset;
+}
 .form .required-input {
   border-color: red;
 }

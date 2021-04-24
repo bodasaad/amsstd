@@ -75,6 +75,17 @@
                   </option>
                 </select>
               </div>
+              <div class="form-control">
+                <input
+                  type="checkbox"
+                  name="active"
+                  id="active"
+                  v-model="active"
+                />
+                <label for="active">{{
+                  active ? "Active" : "Not Active"
+                }}</label>
+              </div>
               <div class="form-input">
                 <label for="tags">Project Tags:</label>
                 <input
@@ -96,6 +107,15 @@
                   </li>
                 </div>
               </div>
+                  <div class="form-control">
+            <label for="site_description">Site Description</label>
+            <input
+              type="text"
+              name="site_description"
+              id="site_description"
+              v-model="site_description"
+            />
+          </div>
             </div>
           </div>
           <div class="form-control">
@@ -187,6 +207,8 @@ export default {
       loading: false,
       alert: false,
       edit: false,
+      active: false,
+      site_description:'',
       loaded: false,
       title: null,
       subtitle: null,
@@ -226,6 +248,8 @@ export default {
         }
         this.title = project.title;
         this.subtitle = project.subtitle;
+        this.active = project.active;
+        this.site_description = project.site_description;
         this.client = project.client;
         this.tags = project.tags;
         this.content = project.content.map((c) => ({
@@ -323,6 +347,8 @@ export default {
 
       const data = new FormData();
       data.append("title", this.title);
+      data.append("active", this.active);
+      data.append("site_description", this.site_description);
       data.append("subtitle", this.subtitle);
       data.append("client", this.client);
       data.append("brief", this.brief);
