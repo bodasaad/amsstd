@@ -14,7 +14,7 @@ export default new Vuex.Store({
   },
   state: {
     categories: [],
-    url: "https://servers.ams-server.xyz/",
+    url: "https://servers.ams-server.xyz",
     // url: "http://localhost:4000",
     msg: null,
     networkconnections: true,
