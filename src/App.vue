@@ -63,9 +63,9 @@ export default {
   },
 
   metaInfo: {
-    title: "AMS STUDIO | Digital Agency",
+    title: "AMS STUDIO | Software Community",
     meta: [
-      { name: "AMS STUDIO", content: "AMS STUDIO | Digital Agency" },
+      { name: "AMS STUDIO", content: "AMS STUDIO | Software Community" },
       {
         name: "description",
         content:
