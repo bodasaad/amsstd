@@ -25,7 +25,9 @@
     {
       "src": "./img/icons/144.png",
       "sizes": "144x144",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+
     },
     {
       "src": "./img/icons/96.png",
@@ -35,8 +37,7 @@
     {
       "src": "./img/icons/48.png",
       "sizes": "48x48",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/png"
     }
   ],
   "start_url": "/",

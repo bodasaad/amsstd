@@ -18,7 +18,8 @@
     <link href="https://cdn.quilljs.com/1.2.6/quill.bubble.css" rel="stylesheet" />
     <link href="https://cdn.quilljs.com/1.2.6/quill.core.css" rel="stylesheet" />
     <link href="https://cdn.quilljs.com/1.2.6/quill.snow.css" rel="stylesheet" />
-    <link rel="icon" href="@/assets/images/Mix.png" />
+    <link rel="icon" href=" https://i.im.ge/2021/09/15/TwOiA4.png">
+
 
     <SearchComponent></SearchComponent>
     <MessageComponent v-if="msg" :msg="msg"></MessageComponent>
@@ -140,6 +141,11 @@ export default {
   overflow: hidden;
   widows: 100vw;
 }
+a:visited {
+  color: #000;
+  text-decoration: none
+}
+
 .slide-left,
 .slide-right {
   height: 100vh;

@@ -70,7 +70,7 @@ a {
 }
 
 a:visited {
-  color: inherit;
+  color: #000;
   text-decoration: none
 }
 
@@ -268,7 +268,7 @@ body.search-pane--show .search-pane {
   transition: opacity 0.6s cubic-bezier(0.55, 0, 0.1, 1);
   padding: var(--m-padding);
   margin-bottom: var(--s-margin);
-  /* box-shadow: var(--shadow2); */
+  color: #000;
   border: 1.4px solid #eee;
 }
 

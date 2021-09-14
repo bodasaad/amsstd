@@ -51,6 +51,15 @@
               </option>
             </select>
           </div>
+          <div class="form-control grid">
+            <label for="location">location</label>
+
+            <select name="location" id="location" v-model="location">
+              <option value="all" class="options">All</option>
+              <option value="blog" class="options">Blog</option>
+              <option value="portfolio" class="options">Portfolio</option>
+            </select>
+          </div>
           <div class="form-input">
             <label for="tags">Article Tags:</label>
             <input
@@ -126,6 +135,7 @@ export default {
       title: null,
       category: "",
       image: "",
+      location: null,
       site_description: "",
       tags: [],
       content: "<p>example content</p>",
@@ -201,6 +211,7 @@ export default {
       const article = this.articleById(id);
       this.title = article.title;
       this.active = article.active;
+      this.location = article.location || "all";
       this.tags = article.tags;
       this.site_description = article.site_description;
       this.category = article.category;
@@ -264,6 +275,7 @@ export default {
       data.append("active", this.active);
       data.append("tags", JSON.stringify(this.tags));
       data.append("title", this.title);
+      data.append("location", this.location);
       data.append("category", this.category);
       data.append("site_description", this.site_description);
       data.append("image", this.image);
